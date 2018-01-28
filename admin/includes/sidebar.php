@@ -27,8 +27,8 @@
                 <a href="<?= direct_admin_url('security') ?>">
                     <i class="fa fa-cube"></i> <span>Products</span>
                     <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
 
                 </a>
 
@@ -48,7 +48,7 @@
 
                     <li>
                         <a href="<?= direct_admin_url('reservation') ?>">
-                            <i class="fa fa-circle-o"></i> Categories
+                            <i class="fa fa-circle-o"></i> Product types
                         </a>
                     </li>
                 </ul>
@@ -58,14 +58,30 @@
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-shopping-cart"></i>
-                    <span>Purchases</span>
+                    <span>Orders</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
                 </a>
+
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="<?= direct_admin_url('user') ?>">
+                            <i class="fa fa-circle-o"></i> View Order Log
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?= direct_admin_url('user') ?>">
+                            <i class="fa fa-circle-o"></i> View Customers
+                        </a>
+                    </li>
+                </ul>
             </li>
 
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-pencil-square-o"></i>
-                    <span>Orders</span>
+                    <span>Inventory IN</span>
                 </a>
             </li>
 
@@ -100,6 +116,29 @@
 
             <li class="treeview">
                 <a href="#">
+                    <i class="fa fa-truck"></i>
+                    <span>Supplier</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="<?= direct_admin_url('user') ?>">
+                            <i class="fa fa-circle-o"></i> View Suppliers
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?= direct_admin_url('user') ?>">
+                            <i class="fa fa-circle-o"></i> Add Supplier
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
                     <i class="fa fa-user"></i>
                     <span>User</span>
                     <span class="pull-right-container">
@@ -121,10 +160,26 @@
                 </ul>
             </li>
 
-            <li>
+            <li class="treeview">
                 <a href="<?= direct_admin_url('settings') ?>">
                     <i class="fa fa-wrench"></i> <span>Settings</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
                 </a>
+
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="<?= direct_admin_url('user') ?>">
+                            <i class="fa fa-circle-o"></i> Inventory Settings
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?= direct_admin_url('user') ?>">
+                            <i class="fa fa-circle-o"></i> Notification Settings
+                        </a>
+                    </li>
+                </ul>
             </li>
 
         </ul>

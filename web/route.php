@@ -5,10 +5,18 @@
  */
 
 
+/**
+ * Route for running migrations
+ *  WARNING: do not delete
+ */
 $Route['run_migrate'] = [
     'endpoint' => 'migration',
     'view' => 'migration'
 ];
+/** WARNING: do not delete migration routes */
+
+
+
 
 
 $Route['/'] = [
@@ -73,14 +81,6 @@ $Route['settings'] = [
     'request' => 'dashboard/dashboard',
     'resource' => true
 ];
-
-
-
-
-
-
-
-
 
 
 
