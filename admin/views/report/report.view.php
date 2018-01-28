@@ -19,7 +19,36 @@
         <!-- Main content -->
         <section class="content">
 
+            <div class="col-sm-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Generate Reports</h3>
+                    </div>
 
+                    <form action="" method="post">
+
+
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label for="date_from">From Date</label>
+                                <input type="date" id="date_from" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="date_to">To Date</label>
+                                <input type="date" id="date_to" class="form-control">
+                            </div>
+                        </div>
+
+
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-success">Generate</button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
 
         </section>
         <!-- /.content -->

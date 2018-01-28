@@ -11,7 +11,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                <i class="fa fa-bar-truck"></i> Supplier
+                <i class="fa fa-truck"></i> Supplier
             </h1>
 
         </section>
