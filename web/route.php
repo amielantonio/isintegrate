@@ -22,65 +22,73 @@ $Route['run_migrate'] = [
 $Route['/'] = [
     'endpoint' => 'admin',
     'view' => 'dashboard/dashboard',
-    'request' => 'dashboard/dashboard'
+    'request' => 'admin/dashboard'
 ];
 
 $Route['inventory'] = [
     'endpoint' => 'admin',
-    'view' => 'dashboard/dashboard',
-    'request' => 'dashboard/dashboard',
+    'view' => 'inventory',
+    'request' => 'admin/inventory',
+    'resource' => true
+];
+
+$Route['receivables'] = [
+    'endpoint' => 'admin',
+    'view' => 'receivables/receivables',
+    'request' => 'admin/receivables',
     'resource' => true
 ];
 
 $Route['product'] = [
     'endpoint' => 'admin',
-    'view' => 'dashboard/dashboard',
-    'request' => 'dashboard/dashboard',
+    'view' => 'product/product',
+    'request' => 'admin/product',
     'resource' => true
 ];
-
-$Route['purchase'] = [
+$Route['product_type'] = [
     'endpoint' => 'admin',
-    'view' => 'dashboard/dashboard',
-    'request' => 'dashboard/dashboard',
+    'view' => 'product/product_type',
+    'request' => 'admin/product',
     'resource' => true
 ];
 
 $Route['order'] = [
     'endpoint' => 'admin',
-    'view' => 'dashboard/dashboard',
-    'request' => 'dashboard/dashboard',
+    'view' => 'order/order',
+    'request' => 'admin/order',
     'resource' => true
 ];
 
-$Route['reports'] = [
+$Route['report'] = [
     'endpoint' => 'admin',
-    'view' => 'dashboard/dashboard',
-    'request' => 'dashboard/dashboard',
+    'view' => 'report/report',
+    'request' => 'admin/report',
     'resource' => true
 ];
 
 $Route['warranty'] = [
     'endpoint' => 'admin',
-    'view' => 'dashboard/dashboard',
-    'request' => 'dashboard/dashboard',
+    'view' => 'warranty/warranty',
+    'request' => 'admin/dashboard',
     'resource' => true
 ];
+
+$Route['supplier'] = [
+    'endpoint' => 'admin',
+    'view' => 'supplier/supplier',
+    'request' => 'admin/supplier',
+    'resource' => true
+];
+
 
 $Route['user'] = [
     'endpoint' => 'admin',
-    'view' => 'dashboard/dashboard',
-    'request' => 'dashboard/dashboard',
+    'view' => 'user/user',
+    'request' => 'admin/dashboard',
     'resource' => true
 ];
 
 
-$Route['settings'] = [
-    'endpoint' => 'admin',
-    'view' => 'dashboard/dashboard',
-    'request' => 'dashboard/dashboard',
-    'resource' => true
-];
 
 
 
