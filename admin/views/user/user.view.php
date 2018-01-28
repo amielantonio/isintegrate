@@ -45,24 +45,17 @@
                                 </tr>
                                 <tr>
                                     <td>1</td>
-                                    <td>Rommer Tiangco</td>
+                                    <td>Paula Baluyut</td>
                                     <td>something@gmail.com</td>
                                     <td>0975-222-1234</td>
-                                    <td><span class="label label-primary">Super Admin</span></td>
+                                    <td><span class="label label-primary">Store Manager</span></td>
                                 </tr>
                                 <tr>
                                     <td>2</td>
-                                    <td>Rommer Tiangco</td>
+                                    <td>John Doe</td>
                                     <td>something@gmail.com</td>
                                     <td>0975-222-1234</td>
-                                    <td><span class="label label-success">Admin</span></td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Rommer Tiangco</td>
-                                    <td>something@gmail.com</td>
-                                    <td>0975-222-1234</td>
-                                    <td><span class="label label-info">Author</span></td>
+                                    <td><span class="label label-success">Staff</span></td>
                                 </tr>
                                 </tbody></table>
                         </div>

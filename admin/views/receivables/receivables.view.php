@@ -115,11 +115,11 @@
                                 </tr>
 
                                 <tr>
-                                    <th>Order ID</th>
+                                    <th>OR#</th>
                                     <th>Supplier Name</th>
                                     <th>No. of Items</th>
-                                    <th>Date Received</th>
                                     <th>Amount of Purchased</th>
+                                    <th>Date Received</th>
                                     <th>Actions</th>
                                 </tr>
                                 </tbody></table>
