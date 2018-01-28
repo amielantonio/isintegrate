@@ -14,9 +14,68 @@ $Route['run_migrate'] = [
 $Route['/'] = [
     'endpoint' => 'admin',
     'view' => 'dashboard/dashboard',
+    'request' => 'dashboard/dashboard'
+];
+
+$Route['inventory'] = [
+    'endpoint' => 'admin',
+    'view' => 'dashboard/dashboard',
     'request' => 'dashboard/dashboard',
     'resource' => true
 ];
+
+$Route['product'] = [
+    'endpoint' => 'admin',
+    'view' => 'dashboard/dashboard',
+    'request' => 'dashboard/dashboard',
+    'resource' => true
+];
+
+$Route['purchase'] = [
+    'endpoint' => 'admin',
+    'view' => 'dashboard/dashboard',
+    'request' => 'dashboard/dashboard',
+    'resource' => true
+];
+
+$Route['order'] = [
+    'endpoint' => 'admin',
+    'view' => 'dashboard/dashboard',
+    'request' => 'dashboard/dashboard',
+    'resource' => true
+];
+
+$Route['reports'] = [
+    'endpoint' => 'admin',
+    'view' => 'dashboard/dashboard',
+    'request' => 'dashboard/dashboard',
+    'resource' => true
+];
+
+$Route['warranty'] = [
+    'endpoint' => 'admin',
+    'view' => 'dashboard/dashboard',
+    'request' => 'dashboard/dashboard',
+    'resource' => true
+];
+
+$Route['user'] = [
+    'endpoint' => 'admin',
+    'view' => 'dashboard/dashboard',
+    'request' => 'dashboard/dashboard',
+    'resource' => true
+];
+
+
+$Route['settings'] = [
+    'endpoint' => 'admin',
+    'view' => 'dashboard/dashboard',
+    'request' => 'dashboard/dashboard',
+    'resource' => true
+];
+
+
+
 
 
 
