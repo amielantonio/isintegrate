@@ -78,6 +78,29 @@
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-user"></i>
+                    <span>Warranty</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="<?= direct_admin_url('user') ?>">
+                            <i class="fa fa-circle-o"></i> View Warranties
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?= direct_admin_url('user') ?>">
+                            <i class="fa fa-circle-o"></i> Add Warranty
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-user"></i>
                     <span>User</span>
                     <span class="pull-right-container">
                       <i class="fa fa-angle-left pull-right"></i>
