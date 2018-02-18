@@ -13,7 +13,7 @@
  */
 function all( $table ){
 
-//pull in connection
+    //pull in connection
     $conn = require DBPATH . '/connection.php';
 
     // Require database configuration file
@@ -45,14 +45,13 @@ function all( $table ){
 }
 
 /**
- * Fetch all data with specific fields
+ * Get an Item from the collection by key
  *
  * @param $table
- * @param string $fields
- * @param string $limit < default = 1 >
+ * @param string $key
  * @return mixed
  */
-function get($table, $fields = '', $limit = "1" ){
+function get($table, $key ){
     //pull in connection
     $conn = require DBPATH . '/connection.php';
 
@@ -62,18 +61,8 @@ function get($table, $fields = '', $limit = "1" ){
     //create table instance
     $table = $db['TB_PREFIX'] . $table;
 
-    //Check if parameter is an array or string
-    if( is_array( $fields )){
-        $fields = implode( ', ', $fields);
-    }
-
     //Create SQL statement
-    $sql = sprintf(
-
-        'SELECT %s FROM %s LIMIT %s',
-        $fields, $table, $limit
-
-    );
+    $sql = "SELECT * FROM {$table} WHERE id = {$key}";
 
     $statement = $conn->prepare( $sql );
 
@@ -87,6 +76,48 @@ function get($table, $fields = '', $limit = "1" ){
     }
 
 }
+
+/**
+ * Pick a field of the specified resource or
+ * pick a specified field of all resources
+ *
+ * @param $table
+ * @param array $key
+ * @param array $fields
+ * @return mixed
+ */
+function cherryPick( $table, $key = "", $fields = []){
+    //pull in connection
+    $conn = require DBPATH . '/connection.php';
+
+    // Require database configuration file
+    $db = require CONFIGPATH.'/database.php';
+
+    //create table instance
+    $table = $db['TB_PREFIX'] . $table;
+
+    $fields = empty($fields) ? "*" : implode(', ', $fields);
+
+    //Create SQL statement
+    $sql = "SELECT {$fields} FROM {$table} ";
+
+    if($key<> ""){
+        $sql.="WHERE id={$key}";
+    }
+
+    $statement = $conn->prepare( $sql );
+
+    try {
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+    catch( PDOException $e ) {
+        throw new PDOException($e->getMessage());
+    }
+
+}
+
 
 /**
  * Fetch first instance of the database
@@ -164,14 +195,12 @@ function atleast( $table, $limit){
 }
 
 /**
- * Fetch all records that corresponds
- * to the where clause
+ * Return only the resources that are not deleted
  *
  * @param $table
- * @param array $where
  * @return mixed
  */
-function where( $table, $where = []){
+function allWithoutTrash( $table ){
     //pull in connection
     $conn = require DBPATH . '/connection.php';
 
@@ -181,10 +210,169 @@ function where( $table, $where = []){
     //create table instance
     $table = $db['TB_PREFIX'] . $table;
 
-    //Check if parameter is an array or string
-    if( is_array( $where )){
-        $where = implode( ', ', $where);
+    $sql = "SELECT * FROM {$table} WHERE is_delete=0";
+
+    $statement = $conn->prepare( $sql );
+
+    try {
+
+        $statement->execute();
+
+        return $statement->fetchAll();
+
     }
+    catch( PDOException $e ) {
+        throw new PDOException($e->getMessage());
+    }
+}
+
+
+/**
+ * Return all trashed resources
+ *
+ * @param $table
+ * @param string $id
+ * @return mixed
+ */
+function trashed( $table, $id="" ){
+    //pull in connection
+    $conn = require DBPATH . '/connection.php';
+
+    // Require database configuration file
+    $db = require CONFIGPATH.'/database.php';
+
+    //create table instance
+    $table = $db['TB_PREFIX'] . $table;
+
+    //Create SQL statement
+    $sql = "SELECT * FROM {$table} WHERE is_delete=1";
+
+
+    if($id <> ""){
+        $sql .= "AND id={$id}";
+    }
+
+    $statement = $conn->prepare( $sql );
+
+    try {
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+    catch( PDOException $e ) {
+        throw new PDOException($e->getMessage());
+    }
+}
+
+
+/**
+ * Get the first record that matches the given attributes or create it
+ *
+ * @param $_table
+ * @param $attribute
+ * @param $value
+ * @return mixed
+ */
+function firstOrCreate($_table, $attribute, $value = ""){
+    //pull in connection
+    $conn = require DBPATH . '/connection.php';
+
+    // Require database configuration file
+    $db = require CONFIGPATH.'/database.php';
+
+    //create table instance
+    $table = $db['TB_PREFIX'] . $_table;
+
+    // Action starts here
+    // Select the primary key form the database
+
+    //Create SQL statement
+    $sql = sprintf(
+
+        'SELECT * FROM %s WHERE %s = "%s"',
+        $table, $attribute, $value
+
+    );
+
+    $statement = $conn->prepare( $sql );
+
+    try {
+        $statement->execute();
+
+        $result =  $statement->fetchAll();
+    }
+    catch( PDOException $e ) {
+        throw new PDOException($e->getMessage());
+    }
+
+    if( !empty($result)){
+        return $result;
+    }
+
+    //Create the Model Instance
+
+
+    $data = [
+        $attribute => $value
+    ];
+
+    insert( $_table, $data);
+
+}
+
+
+
+function innerJoin( $tables = [], $fields = [], $keys, $where = ""){
+
+    //pull in connection
+    $conn = require DBPATH . '/connection.php';
+
+    // Require database configuration file
+    $db = require CONFIGPATH.'/database.php';
+
+    //create table instance
+
+    $fields = empty($fields) ? "*" : implode(', ', $fields);
+
+    //Create SQL statement
+    $sql = "SELECT {$fields} FROM {$db['TB_PREFIX']}{$tables[0]} INNER JOIN {$db['TB_PREFIX']}{$tables[1]} ON {$db['TB_PREFIX']}{$tables[0]}.{$keys[0]} = {$db['TB_PREFIX']}{$tables[1]}.{$keys[1]}";
+
+
+    $where <> "" ? $sql.= " WHERE ".$where : "";
+
+    $statement = $conn->prepare( $sql );
+
+    try {
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+    catch( PDOException $e ) {
+        throw new PDOException($e->getMessage());
+    }
+
+}
+
+
+
+/**
+ * Fetch all records that corresponds
+ * to the where clause
+ *
+ * @param $table
+ * @param array $where
+ * @param string $limit
+ * @return mixed
+ */
+function where( $table, $where="", $limit = ''){
+    //pull in connection
+    $conn = require DBPATH . '/connection.php';
+
+    // Require database configuration file
+    $db = require CONFIGPATH.'/database.php';
+
+    //create table instance
+    $table = $db['TB_PREFIX'] . $table;
 
     //Create SQL statement
     $sql = sprintf(
@@ -194,36 +382,11 @@ function where( $table, $where = []){
 
     );
 
-    $statement = $conn->prepare( $sql );
-
-    try {
-        $statement->execute();
-
-        return $statement->fetchAll();
+    //Check if limit is available
+    if($limit <> ""){
+        $sql .= sprintf( " LIMIT %s", $limit );
     }
-    catch( PDOException $e ) {
-        throw new PDOException($e->getMessage());
-    }
-}
 
-
-function find($table, $primary_key){
-    //pull in connection
-    $conn = require DBPATH . '/connection.php';
-
-    // Require database configuration file
-    $db = require CONFIGPATH.'/database.php';
-
-    //create table instance
-    $table = $db['TB_PREFIX'] . $table;
-
-    //Create SQL statement
-    $sql = sprintf(
-
-        'SELECT * FROM %s WHERE id = "%s"',
-        $table, $primary_key
-
-    );
 
     $statement = $conn->prepare( $sql );
 
@@ -235,7 +398,6 @@ function find($table, $primary_key){
     catch( PDOException $e ) {
         throw new PDOException($e->getMessage());
     }
-
 }
 
 
@@ -244,6 +406,7 @@ function find($table, $primary_key){
  *
  * @param $table
  * @param array $data
+ * @return bool
  */
 function insert( $table, $data = [] ){
 
@@ -278,6 +441,8 @@ function insert( $table, $data = [] ){
     try {
         $statement->execute( $data );
 
+        return true;
+
     }
     catch( PDOException $e ) {
         throw new PDOException($e->getMessage());
@@ -285,23 +450,140 @@ function insert( $table, $data = [] ){
 
 }
 
+/**
+ * Update a certain resources in the database
+ *
+ * @param $table
+ * @param $id
+ * @param array $data
+ * @param string $where
+ * @return bool
+ */
 function patch( $table, $id, $data = [], $where = "" ){
+    //pull in connection
+    $conn = require DBPATH . '/connection.php';
 
+    // Require database configuration file
+    $db = require CONFIGPATH.'/database.php';
+
+    //create table instance
+    $table = $db['TB_PREFIX'] . $table;
+
+    //Get data to update
+    $updates = "";
+
+    $d = "";
+    foreach( $data as $key => $value){
+
+        $updates .= $d . "{$key}='{$value}'";
+        $d = ", ";
+
+
+    }
+
+    $sql = sprintf(
+
+        'UPDATE %s SET %s WHERE id = %s',
+        $table, $updates, $id
+
+    );
+
+    if( $where <> "" ){
+        $sql .= 'AND ' . $where;
+    }
+
+    //Prepare and bind
+    $statement = $conn->prepare( $sql );
+
+    echo $sql;
+
+    try {
+        $statement->execute( $data );
+
+        return true;
+
+    }
+    catch( PDOException $e ) {
+        throw new PDOException($e->getMessage());
+    }
 }
 
-function put(){
+/**
+ * Update a specific resource if the resource is available, Create it if is not.
+ *
+ * @param $table
+ * @param $data
+ * @param string $where
+ * @return bool
+ */
+function updateOrCreate( $table, $data, $where = ""){
 
+    $result = where( $table, $where );
+
+    if( empty( $result ) ){
+
+        insert( $table, $data );
+        return true;
+    }
+
+    $id = $result[0]['id'];
+
+    patch( $table, $id, $data );
 }
 
 
 function delete( $table, $id, $where = ""){
+    //pull in connection
+    $conn = require DBPATH . '/connection.php';
+
+    // Require database configuration file
+    $db = require CONFIGPATH.'/database.php';
+
+    //create table instance
+    $table = $db['TB_PREFIX'] . $table;
+
+    $sql = sprintf(
+
+        'DELETE FROM %s WHERE id = %s',
+        $table, $id
+
+    );
+
+    if( $where <> "" ){
+        $sql .= 'AND ' . $where;
+    }
+
+    //Prepare and bind
+    $statement = $conn->prepare( $sql );
+
+    try {
+        $statement->execute();
+
+        return true;
+
+    }
+    catch( PDOException $e ) {
+        throw new PDOException($e->getMessage());
+    }
+
 
 }
-
 
 function last_id( $table ){
 
 }
+
+
+
+function orderBy( $array, $order){
+
+}
+
+
+
+/** HELPER CLASSES */
+
+
 
 /**
  * Prepare parameters for SQL

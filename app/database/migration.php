@@ -10,7 +10,7 @@
 
 // EXAMPLE MIGRATION
 // ------------------------------------------
-// $migration['table_name'] = [
+// $Migration['table_name'] = [
 //
 //    'field_name' => [
 //        'field_type' => '',
@@ -25,15 +25,24 @@
 //
 // ];
 
+/** Migration tables */
 
+$Migration['migration'] = [
+    'id' => [
+        'field_type' => 'INT',
+        'key' => 'PRIMARY KEY AUTO_INCREMENT'
+    ],
+    'tables' => [
+        'field_type' => 'VARCHAR(100)'
+    ]
+];
 
-
-
+/** end migration tables */
 
 
 /**
  * Return the instance of migration
  *
- * @return $migration
+ * @return $Migration
  */
-return $migration;
+return $Migration;

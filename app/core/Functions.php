@@ -13,21 +13,21 @@
  * Get Public header
  */
 function get_header(){
-   return include PUBLICPATH. '/includes/header.php';
+   return include VIEWPATH. '/frontend/includes/header.php';
 }
 
 /**
  * Get Public footer
  */
 function get_footer(){
-    return include PUBLICPATH. '/includes/footer.php';
+    return include VIEWPATH. '/frontend/includes/footer.php';
 }
 
 /**
  * Get Public Sidebar
  */
 function get_sidebar(){
-    return include PUBLICPATH. '/includes/sidebar.php';
+    return include VIEWPATH. '/frontend/includes/sidebar.php';
 }
 
 /**
@@ -36,48 +36,16 @@ function get_sidebar(){
  * @return mixed
  */
 function get_nav(){
-    return include PUBLICPATH. '/includes/nav.php';
+    return include VIEWPATH. '/frontend/includes/nav.php';
 }
 
+
 /**
- * Return base url of admin
+ * Return base url
  *
  * @return string
  */
-function admin_base_url(){
-    // Get config file
-    $base_url = require CONFIGPATH . '/config.php';
-
-    $base_url = $base_url['APP_HOST'] . $base_url['APP_BASE_URL'];
-
-    $route = $base_url.'/dashboard';
-
-
-    return $route;
-}
-
-
-function direct_admin_url( $url='' ){
-    // Get config file
-    $base_url = require CONFIGPATH . '/config.php';
-
-    $base_url = $base_url['APP_HOST'] . $base_url['APP_BASE_URL'];
-
-    if( $url <> '' ){
-        $url = '/'.$url;
-    }
-
-    $route = $base_url.'/dashboard' . $url;
-
-    return $route;
-}
-
-/**
- * Return base url of frontend
- *
- * @return string
- */
-function public_base_url(){
+function base_url(){
 
     // Get config file
     $base_url = require CONFIGPATH . '/config.php';
@@ -91,19 +59,19 @@ function public_base_url(){
 }
 
 /**
- * Return URI string for accessing public pages
+ * Return URI string for accessing pages
  *
- * @param string $url
+ * @param string $uri
  * @return string
  */
-function direct_public_url( $url = ''){
+function route( $uri = '' ){
 
     // Get config file
     $base_url = require CONFIGPATH . '/config.php';
 
     $base_url = $base_url['APP_HOST'] . $base_url['APP_BASE_URL'];
 
-    $route = $base_url.'/' . $url;
+    $route = $base_url.'/' . $uri;
 
     return $route;
 
@@ -112,19 +80,56 @@ function direct_public_url( $url = ''){
 /**
  * Return base url of resources folder
  *
+ * @param $uri string
  * @return string
  */
-function resource_dir(){
+function asset( $uri = "" ){
     // Get config file
     $base_url = require CONFIGPATH . '/config.php';
 
     $base_url = $base_url['APP_BASE_URL'];
 
-    $route = '/'.$base_url.'/resources';
+    $route = "/{$base_url}/resources/{$uri}";
 
     //Return route
     return $route;
 }
+
+/**
+ * Return Upload folder
+ *
+ * @return string
+ */
+function upload_img_posts(){
+
+    return RESOURCEPATH.'/uploads';
+}
+
+
+function upload_post_image( $image, $destination ){
+
+
+    if (!file_exists($destination) && !is_dir($destination)) {
+
+        chmod($destination, 0755);
+        mkdir($destination, 0755, true);
+
+    }
+
+    /*
+     * move image to uploads directory
+     */
+
+    $file_name = $image['name'];
+
+    if( move_uploaded_file($image['tmp_name'], $destination . $file_name) ){
+        return true;
+    }
+
+    return false;
+
+}
+
 
 /**
  * Get admin header
@@ -132,7 +137,7 @@ function resource_dir(){
  * @return mixed
  */
 function admin_get_header(){
-    return include ADMINPATH . '/includes/header.php';
+    return include VIEWPATH . '/admin/includes/header.php';
 }
 
 /**
@@ -141,7 +146,7 @@ function admin_get_header(){
  * @return mixed
  */
 function admin_get_nav(){
-    return include ADMINPATH . '/includes/nav.php';
+    return include VIEWPATH . '/admin/includes/nav.php';
 }
 
 /**
@@ -150,7 +155,7 @@ function admin_get_nav(){
  * @return mixed
  */
 function admin_get_footer(){
-    return include ADMINPATH . '/includes/footer.php';
+    return include VIEWPATH . '/admin/includes/footer.php';
 }
 
 
@@ -160,7 +165,7 @@ function admin_get_footer(){
  * @return mixed
  */
 function admin_get_sidebar(){
-    return include ADMINPATH . '/includes/sidebar.php';
+    return include VIEWPATH . '/admin/includes/sidebar.php';
 }
 
 
@@ -193,17 +198,21 @@ function is_page( $page ){
 /**
  * Returns the view
  *
- * @param $endpoint
  * @param $view
+ * @param $data array
  * @return mixed
  * @throws exception
  */
-function view($endpoint, $view){
 
-    if(!file_exists( BASEPATH.'/'.$endpoint . '/views/' . $view . '.view.php' )){
+function view( $view, $data = []){
+
+    if(!file_exists( BASEPATH."/public/views/{$view}.view.php" )){
         throw new exception('No View');
     }
-    return require BASEPATH.'/'.$endpoint . '/views/' . $view . '.view.php';
+
+    extract( $data );
+
+    return require VIEWPATH."/{$view}.view.php";
 }
 
 /**
@@ -211,32 +220,55 @@ function view($endpoint, $view){
  *
  * @param $error
  * @return mixed
- * @throws exception
  */
-function view_error($error){
+function view_error( $error ){
 
-    if( !file_exists( BASEPATH.'/public/error/' . $error . '.view.php' )){
-        throw new exception('No View Error');
-    }
-
-    return require BASEPATH.'/public/error/' . $error . '.view.php';
+    return require BASEPATH."/public/error/{$error}.view.php";
 }
 
 /**
  * Return a template within the current layout
  *
- * @param $endpoint
  * @param $partialView
  * @return mixed
  * @throws exception
  */
-function view_partial($endpoint, $partialView){
+function view_partial( $partialView ){
 
-    $partial = 'template/'. $partialView;
+    return require VIEWPATH."/{$partialView}.view.php";
 
-    if(! file_exists($endpoint. $partial . '.view.php')){
-        throw new exception( 'No View' );
-    }
+}
 
-    return include $endpoint. $partial . '.view.php';
+/**
+ * Redirect User to the specified route
+ *
+ * @param $location
+ * @param int $response
+ */
+
+function redirect( $location, $response = 302 ){
+
+    header("Location: {$location}", true, $response);
+}
+
+/**
+ * The Texting game is real!
+ *
+ * @param $number
+ * @param $message
+ * @param $apicode
+ * @return bool|string
+ */
+function itexmo($number,$message,$apicode){
+    $url = 'https://www.itexmo.com/php_api/api.php';
+    $itexmo = array('1' => $number, '2' => $message, '3' => $apicode);
+    $param = array(
+        'http' => array(
+            'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+            'method'  => 'POST',
+            'content' => http_build_query($itexmo),
+        ),
+    );
+    $context  = stream_context_create($param);
+    return file_get_contents($url, false, $context);
 }
