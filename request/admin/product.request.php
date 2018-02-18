@@ -18,7 +18,8 @@ function index(){
  * @throws exception
  */
 function create(){
-    return view('admin', 'product/add_product');
+
+    return view('admin/product/add_product' );
 }
 
 /**

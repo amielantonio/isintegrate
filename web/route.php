@@ -6,11 +6,16 @@
 
 
 /**
- * Route for running migrations
  *  WARNING: do not delete
+ *
+ * Route Keys
+ * - view: Returns a GET request for the view
+ * - request: Returns a request controller
+ * - action: Define an action for the request, if not defined. push index()
+ * - action => resource: defines the Request URI to handle HTTP methods.
+ * - middleware: An intermediary security between a route and a request
  */
 $Route['run_migrate'] = [
-    'endpoint' => 'migration',
     'view' => 'migration'
 ];
 /** WARNING: do not delete migration routes */
@@ -25,47 +30,47 @@ $Route['/'] = [
 
 $Route['inventory'] = [
     'request' => 'admin/inventory',
-    'resource' => true
+    'action' => 'resource'
 ];
 
 $Route['receivables'] = [
     'request' => 'admin/receivables',
-    'resource' => true
+    'action' => 'resource'
 ];
 
 $Route['product'] = [
     'request' => 'admin/product',
-    'resource' => true
+    'action' => 'resource'
 ];
 $Route['product_type'] = [
-    'request' => 'admin/product',
-    'resource' => true
+    'request' => 'admin/product_type',
+    'action' => 'resource'
 ];
 
 $Route['order'] = [
     'request' => 'admin/order',
-    'resource' => true
+    'action' => 'resource'
 ];
 
 $Route['report'] = [
     'request' => 'admin/report',
-    'resource' => true
+    'action' => 'resource'
 ];
 
 $Route['warranty'] = [
     'request' => 'admin/dashboard',
-    'resource' => true
+    'action' => 'resource'
 ];
 
 $Route['supplier'] = [
     'request' => 'admin/supplier',
-    'resource' => true
+    'action' => 'resource'
 ];
 
 
 $Route['user'] = [
     'request' => 'admin/dashboard',
-    'resource' => true
+    'action' => 'resource'
 ];
 
 
