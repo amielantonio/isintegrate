@@ -2,7 +2,7 @@
 <?php admin_get_nav(); ?>
 <?php admin_get_sidebar(); ?>
     <!-- jvectormap -->
-    <link rel="stylesheet" href="<?php echo resource_dir() ?>/plugins/adminlte/bower_components/jvectormap/jquery-jvectormap.css">
+    <link rel="stylesheet" href="<?php echo asset( '/plugins/adminlte/bower_components/jvectormap/jquery-jvectormap.css' ) ?>">
 
 
 
@@ -34,7 +34,7 @@
                             <!-- /.item -->
                             <li class="item">
                                 <div class="product-img">
-                                    <img src="<?php echo resource_dir()?>/img/products/videocard_50x50.png" alt="Product Image">
+                                    <img src="<?php echo asset( '/img/products/videocard_50x50.png' )?>" alt="Product Image">
                                 </div>
                                 <div class="product-info">
                                     <a href="javascript:void(0)" class="product-title">Regular Video Card
@@ -47,7 +47,7 @@
                             <!-- /.item -->
                             <li class="item">
                                 <div class="product-img">
-                                    <img src="<?php echo resource_dir()?>/img/products/cpu_50x50.png" alt="Product Image">
+                                    <img src="<?php echo asset( '/img/products/cpu_50x50.png' )?>" alt="Product Image">
                                 </div>
                                 <div class="product-info">
                                     <a href="javascript:void(0)" class="product-title">Intel i5 7300 <span class="label label-info pull-right">Php 15,000.00</span></a>
@@ -59,7 +59,7 @@
                             <!-- /.item -->
                             <li class="item">
                                 <div class="product-img">
-                                    <img src="<?php echo resource_dir()?>/img/products/case_fan_50x50.png" alt="Case Fan">
+                                    <img src="<?php echo asset( '/img/products/case_fan_50x50.png' )?>" alt="Case Fan">
                                 </div>
                                 <div class="product-info">
                                     <a href="javascript:void(0)" class="product-title">Regular Case Fan
@@ -277,10 +277,10 @@
 </div>
 <!-- /.content-wrapper -->
     <!-- Sparkline -->
-    <script src="<?php echo resource_dir()?>/plugins/adminlte/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+    <script src="<?php echo asset( '/plugins/adminlte/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js' )?>"></script>
     <!-- ChartJS -->
-    <script src="<?php echo resource_dir()?>/plugins/adminlte/bower_components/Chart.js/Chart.js"></script>
+    <script src="<?php echo asset( '/plugins/adminlte/bower_components/Chart.js/Chart.js' )?>"></script>
     <!-- jvectormap  -->
-    <script src="<?php echo resource_dir() ?>/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-    <script src="<?php echo resource_dir() ?>/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="<?php echo asset( '/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js' ) ?>"></script>
+    <script src="<?php echo asset( '/plugins/jvectormap/jquery-jvectormap-world-mill-en.js' ) ?>"></script>
 <?php admin_get_footer(); ?>

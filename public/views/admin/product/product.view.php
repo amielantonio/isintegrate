@@ -2,7 +2,7 @@
 <?php admin_get_nav(); ?>
 <?php admin_get_sidebar(); ?>
     <!-- jvectormap -->
-    <link rel="stylesheet" href="<?php echo resource_dir() ?>/plugins/adminlte/bower_components/jvectormap/jquery-jvectormap.css">
+    <link rel="stylesheet" href="<?php echo asset( '/plugins/adminlte/bower_components/jvectormap/jquery-jvectormap.css' ) ?>">
 
 
 
@@ -76,7 +76,7 @@
                                 <tr>
                                     <td>1</td>
                                     <td>
-                                        <img src="<?php echo resource_dir()?>/img/products/case_fan_50x50.png">
+                                        <img src="<?php echo asset( '/img/products/case_fan_50x50.png' )?>">
                                     </td>
                                     <td>MSI Case Fan Normal Series</td>
                                     <td>MSI fan series for normal computer users</td>
@@ -95,7 +95,7 @@
                                 <tr>
                                     <td>2</td>
                                     <td>
-                                        <img src="<?php echo resource_dir()?>/img/products/videocard_50x50.png">
+                                        <img src="<?php echo asset( '/img/products/videocard_50x50.png' )?>">
                                     </td>
                                     <td>MSI GeForce GTX 210ti</td>
                                     <td>Video card with the power of GeForce, may the GeForce be with you</td>
@@ -114,7 +114,7 @@
                                 <tr>
                                     <td>3</td>
                                     <td>
-                                        <img src="<?php echo resource_dir()?>/img/products/cpu_50x50.png">
+                                        <img src="<?php echo asset( '/img/products/cpu_50x50.png' )?>">
                                     </td>
                                     <td>Intel i5 7300</td>
                                     <td>-</td>
@@ -163,10 +163,10 @@
     </div>
     <!-- /.content-wrapper -->
     <!-- Sparkline -->
-    <script src="<?php echo resource_dir()?>/plugins/adminlte/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+    <script src="<?php echo asset( '/plugins/adminlte/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js' )?>"></script>
     <!-- ChartJS -->
-    <script src="<?php echo resource_dir()?>/plugins/adminlte/bower_components/Chart.js/Chart.js"></script>
+    <script src="<?php echo asset( '/plugins/adminlte/bower_components/Chart.js/Chart.js' )?>"></script>
     <!-- jvectormap  -->
-    <script src="<?php echo resource_dir() ?>/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-    <script src="<?php echo resource_dir() ?>/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="<?php echo asset( '/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js' ) ?>"></script>
+    <script src="<?php echo asset( '/plugins/jvectormap/jquery-jvectormap-world-mill-en.js' ) ?>"></script>
 <?php admin_get_footer(); ?>

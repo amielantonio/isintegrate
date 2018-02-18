@@ -2,7 +2,7 @@
 <?php admin_get_nav(); ?>
 <?php admin_get_sidebar(); ?>
     <!-- jvectormap -->
-    <link rel="stylesheet" href="<?php echo resource_dir() ?>/plugins/adminlte/bower_components/jvectormap/jquery-jvectormap.css">
+    <link rel="stylesheet" href="<?php echo asset( '/plugins/adminlte/bower_components/jvectormap/jquery-jvectormap.css' ) ?>">
 
 
 
@@ -63,7 +63,7 @@
                                     <th>Actions</th>
                                 </tr>
                                 <tr>
-                                    <td><img src="<?php echo resource_dir()?>/img/products/videocard_50x50.png"></td>
+                                    <td><img src="<?php echo asset( '/img/products/videocard_50x50.png' )?>"></td>
                                     <td>
                                         <a href="#">
                                             MSI GeForce GTX 210ti
@@ -96,7 +96,7 @@
 
                                 </tr>
                                 <tr>
-                                    <td><img src="<?php echo resource_dir()?>/img/products/case_fan_50x50.png"></td>
+                                    <td><img src="<?php echo asset( '/img/products/case_fan_50x50.png' )?>"></td>
                                     <td>
                                         <a href="#">
                                             MSI Case Fan Normal Series
@@ -162,10 +162,10 @@
     </div>
     <!-- /.content-wrapper -->
     <!-- Sparkline -->
-    <script src="<?php echo resource_dir()?>/plugins/adminlte/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+    <script src="<?php echo asset( '/plugins/adminlte/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js' )?>"></script>
     <!-- ChartJS -->
-    <script src="<?php echo resource_dir()?>/plugins/adminlte/bower_components/Chart.js/Chart.js"></script>
+    <script src="<?php echo asset( '/plugins/adminlte/bower_components/Chart.js/Chart.js' )?>"></script>
     <!-- jvectormap  -->
-    <script src="<?php echo resource_dir() ?>/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-    <script src="<?php echo resource_dir() ?>/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="<?php echo asset( '/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js' ) ?>"></script>
+    <script src="<?php echo asset( '/plugins/jvectormap/jquery-jvectormap-world-mill-en.js' ) ?>"></script>
 <?php admin_get_footer(); ?>
