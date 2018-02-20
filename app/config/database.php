@@ -16,7 +16,7 @@ $db['DB_HOST'] = 'localhost';
  * Database name
  */
 
-$db['DB_NAME'] = 'calvarydb';
+$db['DB_NAME'] = 'inventorydb';
 
 
 /**

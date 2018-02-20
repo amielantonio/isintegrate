@@ -58,7 +58,7 @@ $Route['report'] = [
 ];
 
 $Route['warranty'] = [
-    'request' => 'admin/dashboard',
+    'request' => 'admin/warranty',
     'action' => 'resource'
 ];
 
@@ -69,7 +69,7 @@ $Route['supplier'] = [
 
 
 $Route['user'] = [
-    'request' => 'admin/dashboard',
+    'request' => 'admin/user',
     'action' => 'resource'
 ];
 
