@@ -54,6 +54,7 @@ $Migration['products'] = [
     'product_image'         => [ 'field_type' => 'VARCHAR(100)' ],
     'sku'                   => [ 'field_type' => 'VARCHAR(100)' ],
     'product_type'          => [ 'field_type' => 'VARCHAR(50)' ],
+    'is_delete'             => [ 'field_type' => 'INT(1)' ],
     'created_at'            => [ 'field_type' => 'DATETIME' ],
     'updated_at'            => [ 'field_type' => 'DATETIME' ]
 ];
@@ -86,6 +87,7 @@ $Migration['suppliers'] = [
     'supplier_address'      => [ 'field_type' => 'VARCHAR(100)' ],
     'contact_info'          => [ 'field_type' => 'VARCHAR(15)' ],
     'email'                 => [ 'field_type' => 'VARCHAR(50)' ],
+    'is_delete'             => [ 'field_type' => 'INT(1)' ],
     'created_at'            => [ 'field_type' => 'DATETIME' ],
     'updated_at'            => [ 'field_type' => 'DATETIME' ]
 ];

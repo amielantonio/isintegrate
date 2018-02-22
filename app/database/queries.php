@@ -194,6 +194,38 @@ function atleast( $table, $limit){
 
 }
 
+function softDelete( $table, $id ){
+//pull in connection
+    $conn = require DBPATH . '/connection.php';
+
+    // Require database configuration file
+    $db = require CONFIGPATH.'/database.php';
+
+    //create table instance
+    $table = $db['TB_PREFIX'] . $table;
+
+
+    $sql = sprintf(
+
+        'UPDATE %s SET is_delete="1" WHERE id = %s',
+        $table, $id
+
+    );
+
+    //Prepare and bind
+    $statement = $conn->prepare( $sql );
+
+    try {
+        $statement->execute();
+
+        return true;
+
+    }
+    catch( PDOException $e ) {
+        throw new PDOException($e->getMessage());
+    }
+}
+
 /**
  * Return only the resources that are not deleted
  *
