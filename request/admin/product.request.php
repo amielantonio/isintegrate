@@ -13,8 +13,14 @@ function index(){
     return view( 'admin/product/product', compact( 'products' ) );
 }
 
+/**
+ * Show a specific resources
+ *
+ * @param $resource
+ * @return mixed
+ * @throws exception
+ */
 function show( $resource ){
-
 
     $product = get( 'products', $resource );
 
@@ -38,8 +44,10 @@ function create(){
  *
  * @param $resource
  * @return mixed
+ * @throws exception
  */
 function edit( $resource ){
+
 
     $product = get( 'products', $resource );
 
@@ -89,14 +97,8 @@ function store(){
  */
 function update( $resource ){
 
-    if( $resource == "" ){
-        redirect( route('product' ) );
-    }
-
-
     $image = "";
     $data = [
-
 
         "product_name"          => $_POST['product_name'],
         "product_description"   => $_POST['product_description'],
@@ -126,11 +128,6 @@ function update( $resource ){
  * @return bool
  */
 function destroy( $resource ){
-
-    if( $resource == "" ){
-        redirect( route( 'product' ) );
-    }
-
 
     $result = softDelete( 'products', $resource );
 

@@ -43,6 +43,7 @@ $Migration['receivables'] = [
     'product_id'            => [ 'field_type' => 'INT' ],
     'quantity'              => [ 'field_type' => 'INT' ],
     'amount'                => [ 'field_type' => 'DECIMAL(10,2)' ],
+    'receivable_image'      => [ 'field_type' => 'TEXT' ],
     'date_received'         => [ 'field_type' => 'DATETIME' ]
 ];
 
