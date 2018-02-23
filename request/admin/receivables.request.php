@@ -39,6 +39,11 @@ function create(){
 
 }
 
+/**
+ * Save the resources
+ *
+ * @return bool
+ */
 function store(){
 
     $data = [
@@ -52,6 +57,9 @@ function store(){
         'date_received'     => $_POST[ 'receipt_number' ],
 
     ];
+
+    return ( insert( 'receivables', $data ) ) ? true : false;
+
 }
 
 /**
@@ -69,13 +77,45 @@ function edit( $resource ){
 
 }
 
-
+/**
+ * Update the specified resource
+ *
+ * @param $resource
+ * @return bool
+ */
 function update( $resource ){
 
+    $data = [
 
+        'receipt_number'    => $_POST[ 'receipt_number' ],
+        'supplier_id'       => $_POST[ 'supplier_id' ],
+        'product_id'        => $_POST[ 'product_id' ],
+        'quantity'          => $_POST[ 'quantity' ],
+        'amount'            => $_POST[ 'amount' ],
+        'receivable_image'  => $_POST[ 'receivable_image' ],
+        'date_received'     => $_POST[ 'receipt_number' ],
+
+    ];
+
+    $result = patch( 'receivables', $resource, $data );
+
+    if( !$result ){
+        return false;
+    }
+
+    return true;
 
 }
 
+
+/**
+ * Destroy the specified resource
+ *
+ * @param $resource
+ * @return bool
+ */
 function destroy( $resource ){
+
+    return delete( 'receivables', $resource) ? true : false;
 
 }

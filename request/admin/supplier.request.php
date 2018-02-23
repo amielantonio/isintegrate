@@ -55,13 +55,13 @@ function store(){
 
 }
 
-
+/**
+ * Show form to edit the specified resource
+ *
+ * @param $resource
+ * @return mixed
+ */
 function edit( $resource ){
-
-    if( $resource == "" ){
-        redirect( route( 'supplier' ) );
-    }
-
 
     $supplier = get( 'suppliers', $resource );
 
@@ -69,11 +69,37 @@ function edit( $resource ){
 
 }
 
-
+/**
+ * Update the specified resource
+ *
+ * @param $resource
+ * @return bool
+ */
 function update( $resource ){
 
+    $data = [
+
+        'supplier_name'     => $_POST['supplier_name'],
+        'contact'           => $_POST['contact'],
+        'contact_position'  => $_POST['contact_position'],
+        'supplier_address'  => $_POST['supplier_address'],
+        'contact_info'      => $_POST['contact_info'],
+        'email'             => $_POST['email'],
+        "updated_at"        => date( 'Y-m-d H:i:s' ),
+
+    ];
+
+    $result = patch( 'suppliers', $resource, $data);
+
+    if( !$result ){
+        return false;
+    }
+
+    return true;
 }
 
 function destroy( $resource ){
+
+    return ( softDelete( 'suppliers', $resource ) ) ? true : false;
 
 }
