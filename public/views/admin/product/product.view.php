@@ -70,65 +70,46 @@
                                     <th>Product Description</th>
                                     <th>SKU</th>
                                     <th>Product Type</th>
+                                    <th>Selling Price</th>
                                     <th>Date Added</th>
                                     <th>Actions</th>
                                 </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>
-                                        <img src="<?php echo asset( '/img/products/case_fan_50x50.png' )?>">
-                                    </td>
-                                    <td>MSI Case Fan Normal Series</td>
-                                    <td>MSI fan series for normal computer users</td>
-                                    <td>-</td>
-                                    <td>Case Fan</td>
-                                    <td>01/01/2018</td>
-                                    <td>
-                                        <a href="#">
-                                            <button type="button" class="btn btn-primary">
-                                                View
-                                            </button>
-                                        </a>
-                                    </td>
-                                </tr>
 
-                                <tr>
-                                    <td>2</td>
-                                    <td>
-                                        <img src="<?php echo asset( '/img/products/videocard_50x50.png' )?>">
-                                    </td>
-                                    <td>MSI GeForce GTX 210ti</td>
-                                    <td>Video card with the power of GeForce, may the GeForce be with you</td>
-                                    <td>-</td>
-                                    <td>Video Card</td>
-                                    <td>01/01/2018</td>
-                                    <td>
-                                        <a href="#">
-                                            <button type="button" class="btn btn-primary">
-                                                View
-                                            </button>
-                                        </a>
-                                    </td>
-                                </tr>
 
-                                <tr>
-                                    <td>3</td>
-                                    <td>
-                                        <img src="<?php echo asset( '/img/products/cpu_50x50.png' )?>">
-                                    </td>
-                                    <td>Intel i5 7300</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>Processor</td>
-                                    <td>01/01/2018</td>
-                                    <td>
-                                        <a href="#">
-                                            <button type="button" class="btn btn-primary">
-                                                View
-                                            </button>
-                                        </a>
-                                    </td>
-                                </tr>
+                                <?php $x = 1; foreach( $products as $key => $product) : ?>
+
+                                    <tr>
+                                        <td><?= $x ?></td>
+                                        <td>
+                                            <img src="<?php echo asset( $product[ 'product_image' ] )?>" class="img-display img-display--table">
+                                        </td>
+                                        <td><?= $product[ 'product_name' ] ?></td>
+                                        <td><?= $product[ 'product_description' ] ?></td>
+                                        <td><?= ($product[ 'sku' ] <> "" ) ? $product[ 'sku' ] : "-" ?></td>
+                                        <td><?= $product[ 'product_type' ] ?></td>
+                                        <td><span>Php</span> <?= $product[ 'selling_price' ] ?></td>
+                                        <td><?= date( 'm/d/Y', strtotime( $product['created_at'] ) ) ?></td>
+                                        <td>
+                                            <div class="toolbar">
+                                                <a href="<?= route( "product/{$product['id']}" )?>" class="toolbar-tool">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
+
+                                                <a href="<?= route( "product/{$product['id']}/edit" )?>" class="toolbar-tool">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+
+
+                                                <a href="<?= route( "product/{$product['id']}/destroy" )?>" class="toolbar-tool">
+                                                    <span class="text-danger"><i class="fa fa-trash"></i></span>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                <?php $x++; endforeach; ?>
+
+
 
                                 <tr>
                                     <th>#</th>
@@ -137,6 +118,7 @@
                                     <th>Product Description</th>
                                     <th>SKU</th>
                                     <th>Product Type</th>
+                                    <th>Selling Price</th>
                                     <th>Date Added</th>
                                     <th>Actions</th>
                                 </tr>

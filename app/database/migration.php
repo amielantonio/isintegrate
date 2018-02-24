@@ -29,7 +29,7 @@ $Migration['inventory'] = [
         'field_type' => 'INT',
         'key' => 'PRIMARY KEY AUTO_INCREMENT'
     ],
-    'product_id'            => [ 'field_type' => 'VARCHAR(200)' ],
+    'product_id'            => [ 'field_type' => 'INT' ],
     'stock'                 => [ 'field_type' => 'INT' ],
     'stock_limit'           => [ 'field_type' => 'INT' ],
     'created_at'            => [ 'field_type' => 'DATETIME' ],
@@ -53,11 +53,21 @@ $Migration['products'] = [
     'product_description'   => [ 'field_type' => 'TEXT' ],
     'product_brand'         => [ 'field_type' => 'VARCHAR(50)' ],
     'product_image'         => [ 'field_type' => 'VARCHAR(100)' ],
-    'sku'                   => [ 'field_type' => 'VARCHAR(100)' ],
+    'sku'                   => [ 'field_type' => 'VARCHAR(100)', 'key' => 'UNIQUE' ],
     'product_type'          => [ 'field_type' => 'VARCHAR(50)' ],
+    'sale_price'            => [ 'field_type' => 'DECIMAL(10,2)' ],
+    'unit_price'            => [ 'field_type' => 'DECIMAL(10,2)' ],
+    'selling_price'         => [ 'field_type' => 'DECIMAL(10,2)' ],
     'is_delete'             => [ 'field_type' => 'INT(1)' ],
     'created_at'            => [ 'field_type' => 'DATETIME' ],
     'updated_at'            => [ 'field_type' => 'DATETIME' ]
+];
+
+$Migration['product_brands'] = [
+    'id'            => [ 'field_type'  => 'INT', 'key' => 'PRIMARY KEY AUTO_INCREMENT' ],
+    'brand_name'    => [ 'field_type' => 'VARCHAR(50)', 'key' => 'UNIQUE' ],
+    'is_delete'     => [ 'field_type' => 'INT(1)' ] ,
+
 ];
 
 $Migration['orders'] = [
@@ -69,6 +79,7 @@ $Migration['orders'] = [
     'amount'                => [ 'field_type' => 'DECIMAL(10,2)' ],
     'order_status'          => [ 'field_type' => 'VARCHAR(50)' ],
     'date_ordered'          => [ 'field_type' => 'DATETIME' ],
+    'is_delete'             => [ 'field_type' => 'INT(1)' ],
     'date_shipped'          => [ 'field_type' => 'DATETIME' ]
 ];
 
@@ -99,6 +110,7 @@ $Migration['customers'] = [
     'contact_number'        => [ 'field_type' => 'VARCHAR(50)' ],
     'address'               => [ 'field_type' => 'TEXT' ],
     'email'                 => [ 'field_type' => 'VARCHAR(50)' ],
+    'is_delete'             => [ 'field_type' => 'INT(1)' ],
     'created_at'            => [ 'field_type' => 'DATETIME' ],
     'updated_at'            => [ 'field_type' => 'DATETIME' ]
 ];

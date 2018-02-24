@@ -38,14 +38,27 @@ $Route['receivables'] = [
     'action' => 'resource'
 ];
 
+//PRODUCTS
 $Route['product'] = [
     'request' => 'admin/product',
     'action' => 'resource'
 ];
-$Route['product_type'] = [
+$Route['product/trash'] = [
+    'request' => 'admin/product',
+    'action' => 'deleted'
+];
+
+$Route['product/brands'] = [
+    'request' => 'admin/brand',
+    'action' => 'resource'
+];
+
+$Route['product/type'] = [
     'request' => 'admin/product_type',
     'action' => 'resource'
 ];
+
+//END PRODUCTS
 
 $Route['order'] = [
     'request' => 'admin/order',

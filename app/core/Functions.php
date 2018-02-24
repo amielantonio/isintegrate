@@ -95,6 +95,13 @@ function asset( $uri = "" ){
     return $route;
 }
 
+
+function asset_dir( $path ){
+
+    return RESOURCEPATH . "\\{$path}";
+
+}
+
 /**
  * Return Upload folder
  *
@@ -126,7 +133,36 @@ function upload_post_image( $image, $destination ){
         return true;
     }
 
+    if( $image[ 'error' ] > 0){
+        return false;
+    }
+
     return false;
+}
+
+function fileErrorHandler( $error ){
+
+    switch ( $error ){
+        case 0 :
+            return true;
+            break;
+
+        case 1 :
+            return 'The file upload exceeds the upload max size';
+            break;
+        case 2 :
+            return 'The file upload exceeds the upload max size';
+            break;
+        case 3 :
+            return "The upload file was only partially uploaded";
+            break;
+        case 4 :
+            return "No file was uploaded";
+            break;
+        case 6 :
+            return "Missing a temporary folder";
+            break;
+    }
 
 }
 

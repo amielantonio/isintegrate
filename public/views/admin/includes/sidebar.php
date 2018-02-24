@@ -54,8 +54,13 @@
                     </li>
 
                     <li>
-                        <a href="<?= route('product_type') ?>">
+                        <a href="<?= route('product/type') ?>">
                             <i class="fa fa-circle-o"></i> Product types
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?= route('product/brands') ?>">
+                            <i class="fa fa-circle-o"></i> Brands
                         </a>
                     </li>
                 </ul>
@@ -170,12 +175,12 @@
 
                 <ul class="treeview-menu">
                     <li>
-                        <a href="<?= route('inventory_settings') ?>">
+                        <a href="<?= route('inventory-settings') ?>">
                             <i class="fa fa-circle-o"></i> Inventory Settings
                         </a>
                     </li>
                     <li>
-                        <a href="<?= route('notification_settings') ?>">
+                        <a href="<?= route('notification-settings') ?>">
                             <i class="fa fa-circle-o"></i> Notification Settings
                         </a>
                     </li>

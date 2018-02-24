@@ -10,6 +10,7 @@ function index(){
 
     $products = allWithoutTrash( 'products' );
 
+
     return view( 'admin/product/product', compact( 'products' ) );
 }
 
@@ -21,7 +22,6 @@ function index(){
  * @throws exception
  */
 function show( $resource ){
-
     $product = get( 'products', $resource );
 
     return view( 'admin/product/view_product', compact( 'product' ) );
@@ -35,7 +35,9 @@ function show( $resource ){
  */
 function create(){
 
-    return view('admin/product/add_product' );
+    $brands = allWithoutTrash('product_brands' );
+
+    return view('admin/product/add_product', compact( 'brands' ) );
 }
 
 
@@ -48,19 +50,28 @@ function create(){
  */
 function edit( $resource ){
 
+    $brands = allWithoutTrash('product_brands' );
+
+
+    $stocks = get('inventory', $resource);
 
     $product = get( 'products', $resource );
 
-    return view( '', compact( 'product' ));
+    return view( 'admin/product/add_product', compact( 'product', 'brands', 'stocks' ));
 }
 
 /**
  * Store product information
  *
- * @return bool
  */
 function store(){
-    $image = "";
+    if( !isset( $_POST ) ) {
+        redirect( route( 'product' ) );
+        return false;
+    }
+
+
+    $image_path = asset_dir( 'img\\products\\') ;
 
     $data = [
 
@@ -68,24 +79,50 @@ function store(){
         "product_name"          => $_POST['product_name'],
         "product_description"   => $_POST['product_description'],
         "product_brand"         => $_POST['product_brand'],
-        "product_image"         => $image,
+        "product_image"         => 'img/products/'.$_FILES['product_image']['name'],
         "sku"                   => $_POST['sku'],
         "product_type"          => $_POST['product_type'],
+        "selling_price"         => $_POST['selling_price'],
+        "unit_price"            => $_POST['unit_price'],
+        "sale_price"            => $_POST['sale_price'],
         "created_at"            => date( 'Y-m-d H:i:s' ),
         "updated_at"            => date( 'Y-m-d H:i:s' ),
 
 
     ];
 
-    $result = insert( 'products', $data );
 
-    if(!$result){
+    //Check if there is an image upload error
+    if(!upload_post_image( $_FILES['product_image'], $image_path )){
+        redirect( route( 'product/create?message=1' ) );
+    }
 
-        return false;
+    //Check if there is an error
+    if( !insert( 'products', $data ) ){
+
+        redirect( route( 'product/create?message=1' ) );
 
     }
 
-    return true;
+    //Do Stock Process
+
+    $stock_data = [
+
+        'product_id' => where( 'products', "sku = {$_POST['sku']}" )[0]['id'],
+        'stock' => $_POST['stock'],
+        'stock_limit' => $_POST['stock_limit'],
+        'created_at' => date( 'Y-m-d H:i:s' ),
+        'updated_at' => date( 'Y-m-d H:i:s' )
+
+    ];
+
+    if( !insert( 'inventory', $stock_data) ){
+
+        redirect( route( 'product/create?message=1' ) );
+
+    }
+
+    redirect( route( 'product' ) );
 }
 
 
@@ -97,13 +134,14 @@ function store(){
  */
 function update( $resource ){
 
-    $image = "";
+    $image_path = asset_dir( 'img\\products\\') ;
+    $image = 'img/products/'.$_FILES['product_image']['name'];
+
     $data = [
 
         "product_name"          => $_POST['product_name'],
         "product_description"   => $_POST['product_description'],
         "product_brand"         => $_POST['product_brand'],
-        "product_image"         => $image,
         "sku"                   => $_POST['sku'],
         "product_type"          => $_POST['product_type'],
         "updated_at"            => date( 'Y-m-d H:i:s' ),
@@ -111,13 +149,37 @@ function update( $resource ){
 
     ];
 
-    $result = patch( 'products', $resource, $data );
-
-    if( !$result ){
-        return false;
+    if( ! $_FILES['product_image']['error'] == 4){
+        $data['product_image'] = $image;
     }
 
-    return true;
+    if(!upload_post_image( $_FILES['product_image'], $image_path )){
+        redirect( route( 'product/create?message=1' ) );
+    }
+
+    if( !patch( 'products', $resource, $data ) ){
+        redirect( route( 'product/create?message=1' ) );
+    }
+
+    //Do Stock Process
+
+    $stock_data = [
+
+        'product_id' => where( 'products', "sku = {$_POST['sku']}" )[0]['id'],
+        'stock' => $_POST['stock'],
+        'stock_limit' => $_POST['stock_limit'],
+        'created_at' => date( 'Y-m-d H:i:s' ),
+        'updated_at' => date( 'Y-m-d H:i:s' )
+
+    ];
+
+    if( !insert( 'inventory', $stock_data) ){
+
+        redirect( route( 'product/create?message=1' ) );
+
+    }
+
+    redirect( route( "product/{$resource}/edit" ) );
 
 }
 
@@ -125,7 +187,6 @@ function update( $resource ){
  * Soft Deletes the specified resource
  *
  * @param $resource
- * @return bool
  */
 function destroy( $resource ){
 
@@ -133,9 +194,20 @@ function destroy( $resource ){
 
     if( !$result ){
 
-        return false;
+        redirect( route( 'product?message=1' ) );
 
     }
 
-    return true;
+    redirect( route( 'product' ) );
+}
+
+/**
+ * @return mixed
+ * @throws exception
+ */
+function deleted(){
+
+    $products = trashed( 'products' );
+
+    return view( 'admin/product/product', compact( 'products' ) );
 }

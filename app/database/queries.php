@@ -277,7 +277,7 @@ function trashed( $table, $id="" ){
     $table = $db['TB_PREFIX'] . $table;
 
     //Create SQL statement
-    $sql = "SELECT * FROM {$table} WHERE is_delete=1";
+    $sql = "SELECT * FROM {$table} WHERE is_delete = 1";
 
 
     if($id <> ""){
@@ -600,16 +600,20 @@ function delete( $table, $id, $where = ""){
 
 
 }
-
-function last_id( $table ){
-
-}
-
-
-
-function orderBy( $array, $order){
-
-}
+//
+//function last_id( $table ){
+//
+//    $id = cherryPick( $table, "LAST_INSERT_ID()" );
+//
+//    return $id;
+//
+//}
+//
+//
+//
+//function orderBy( $array, $order){
+//
+//}
 
 
 
