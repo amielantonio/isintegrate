@@ -101,6 +101,11 @@
                         </a>
                     </li>
                     <li>
+                        <a href="<?= route('order/pending') ?>">
+                            <i class="fa fa-circle-o"></i> Pending Order
+                        </a>
+                    </li>
+                    <li>
                         <a href="<?= route('order') ?>">
                             <i class="fa fa-circle-o"></i> View Order Log
                         </a>

@@ -77,7 +77,7 @@ $Migration['orders'] = [
     'customer_id'           => [ 'field_type' => 'INT' ],
     'product_id'            => [ 'field_type' => 'INT' ],
     'quantity'              => [ 'field_type' => 'INT' ],
-    'amount'                => [ 'field_type' => 'DECIMAL(10,2)' ],
+    'selling_price'         => [ 'field_type' => 'DECIMAL(10,2)' ],
     'order_status'          => [ 'field_type' => 'VARCHAR(50)' ],
     'date_ordered'          => [ 'field_type' => 'DATETIME' ],
     'is_delete'             => [ 'field_type' => 'INT(1)' ],

@@ -60,10 +60,17 @@ $Route['product/type'] = [
 
 //END PRODUCTS
 
+//ORDER
 $Route['order'] = [
     'request' => 'admin/order',
     'action' => 'resource'
 ];
+
+$Route['order/pending'] = [
+    'request' => 'admin/pending_order',
+    'action' => 'resource'
+];
+//END ORDER
 
 $Route['report'] = [
     'request' => 'admin/report',
