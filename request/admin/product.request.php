@@ -15,6 +15,24 @@ function index(){
 }
 
 /**
+ * Returns all products as json data
+ */
+function products(){
+
+    $products = allWithoutTrash( 'products' );
+
+    echo json_encode($products);
+    exit;
+}
+
+function get_product( $resource ){
+
+    $product = get( 'products', $resource );
+
+    echo json_encode( $product );
+}
+
+/**
  * Show a specific resources
  *
  * @param $resource
@@ -130,7 +148,6 @@ function store(){
  * Update a specific resource
  *
  * @param $resource
- * @return bool
  */
 function update( $resource ){
 

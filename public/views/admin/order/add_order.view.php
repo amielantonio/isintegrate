@@ -65,14 +65,17 @@
                                     </div>
 
                                     <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="customer_id">Customer name</label>
-                                            <input type="text" name="customer_id" id="customer_id" class="form-control">
-                                        </div>
                                     </div>
 
                                 </div>
                                 <!--END ROW-->
+
+                                <button id="add_row" class="btn btn-info" type="button">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                                <button id="add_row" class="btn btn-danger" type="button">
+                                    <i class="fa fa-minus"></i>
+                                </button>
 
                                 <table class="table" id="product_table">
                                     <tr>
@@ -170,7 +173,7 @@
                 '</select>' +
                 '</td>' +
                 '<td><input type="number" name="quantity[]" class="form-control quantity-val" id="quantity" placeholder="quantity"></td>' +
-                '<td><input type="text" name="unit_price[]" class="form-control unit-price-val" id="unit_price" placeholder="Unit Price"></td>' +
+                '<td><input type="text" name="selling_price[]" class="form-control selling-price-val" id="unit_price" placeholder="Unit Price"></td>' +
                 '<td><input type="text" name="amount[]" class="form-control amount-val" id="amount" placeholder="Amount" readonly="readonly"></td>' +
                 '</tr>'
 
@@ -184,7 +187,20 @@
 
         });
 
-        $( document ).on( 'blur','.unit-price-val', function(){
+        $( document ).on( 'change', '.product_id', function(){
+
+            var sellingInput = $( this ).parent().siblings().find('.selling-price-val');
+
+            $.ajax({
+
+                url: <?= route( 'product' )?>
+
+            });
+
+
+        });
+
+        $( document ).on( 'blur','.selling-price-val', function(){
 
             console.log( 'somethig' );
 
@@ -202,7 +218,6 @@
 
 
         });
-
 
 
     </script>

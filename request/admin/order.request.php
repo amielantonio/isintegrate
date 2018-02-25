@@ -11,15 +11,28 @@ function index(){
     return view( 'admin/order/order');
 }
 
+/**
+ * @param $resource
+ * @return mixed
+ * @throws exception
+ */
 function show( $resource ){
     $order = get( 'orders', $resource );
 
     return view( 'admin/order/view_order', compact( 'order' ) );
 }
 
+
+/**
+ * @return mixed
+ * @throws exception
+ */
 function create(){
 
-    return view( 'admin/order/add_order' );
+    $products = allWithoutTrash( 'products' );
+
+
+    return view( 'admin/order/add_order', compact( 'products' ) );
 
 }
 

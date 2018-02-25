@@ -48,6 +48,16 @@ $Route['product/trash'] = [
     'action' => 'deleted'
 ];
 
+$Route['product/products'] = [
+    'request' => 'admin/product',
+    'action' => 'products'
+];
+
+$Route['product/{resource}/get'] = [
+    'request'=> 'admin/product',
+    'action' => 'get_product'
+];
+
 $Route['product/brands'] = [
     'request' => 'admin/brand',
     'action' => 'resource'
