@@ -354,6 +354,33 @@ function firstOrCreate($_table, $attribute, $value = ""){
 
 
 
+function rawQuerySelect( $sql ){
+
+    //pull in connection
+    $conn = require DBPATH . '/connection.php';
+
+    $statement = $conn->prepare( $sql );
+
+    try {
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+    catch( PDOException $e ) {
+        throw new PDOException($e->getMessage());
+    }
+
+}
+
+/**
+ * Inner Join 2 tables
+ *
+ * @param array $tables
+ * @param array $fields
+ * @param $keys
+ * @param string $where
+ * @return mixed
+ */
 function innerJoin( $tables = [], $fields = [], $keys, $where = ""){
 
     //pull in connection

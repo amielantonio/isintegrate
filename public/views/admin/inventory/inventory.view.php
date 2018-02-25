@@ -57,84 +57,76 @@
                                     <th>Product Name</th>
                                     <th>SKU</th>
                                     <th>Stock</th>
-                                    <th>Price</th>
+                                    <th>Selling Price</th>
                                     <th>Product Type</th>
                                     <th>Date Updated</th>
                                     <th>Actions</th>
                                 </tr>
+
+                                <?php foreach($products as $key => $product) :   ?>
                                 <tr>
-                                    <td><img src="<?php echo asset( '/img/products/videocard_50x50.png' )?>"></td>
+                                    <td><img src="<?php echo asset( $product[ 'product_image' ] )?>" class="img-display img-display--table"></td>
                                     <td>
-                                        <a href="#">
-                                            MSI GeForce GTX 210ti
+                                        <a href="<?= route( "product/{$product[ 'id' ]}" )?>">
+                                            <?= $product[ 'product_name' ]?>
                                         </a>
                                     </td>
-                                    <td>-</td>
+                                    <td><?= $product[ 'sku' ] <> "" ? $product[ 'sku' ] : "-"?></td>
                                     <td>
-                                        <span class="text-green">In Stock</span> <span class="label label-danger">critical stock</span>
+
+                                        <?php if( $product['stock'] > 1) : ?>
+                                        <span class="text-green">In Stock(</span>
+                                        <?= $product[ 'stock' ]?>
+                                        <span class="text-green">)</span>
+
+                                        <?php else : ?>
+
+                                        <span class="text-danger">Out of Stock</span>
+
+                                        <?php endif;?>
+
+                                        <!--BADGE-->
+                                        <?php if($product['stock'] == 0 ) : ?>
+                                            <span></span>
+                                        <?php elseif( $product['stock']<= $product['stock_limit'] + 5 and $product['stock'] > $product['stock_limit']) : ?>
+                                            <span class="label label-warning">low stock</span>
+                                        <?php elseif( $product['stock'] <= $product['stock_limit'] ) : ?>
+                                            <span class="label label-danger">critical stock</span>
+                                        <?php endif;?>
                                     </td>
                                     <td>
-                                        Php 1050.00
+                                        <?= $product['selling_price'] ?>
                                     </td>
                                     <td>
                                         <a href="#">
-                                            Video Card
+                                            <?= $product['product_type']?>
                                         </a>
                                     </td>
                                     <td>
-                                        01/01/2018
+                                        <?= date('m/d/Y', strtotime($product['updated_at']));?>
                                     </td>
                                     <td>
-                                        <a href="#">
-                                            <button type="button" class="btn btn-info">View</button>
-                                        </a>
-                                        <a href="#">
-                                            <button type="button" class="btn btn-danger">Delete</button>
-                                        </a>
+
+                                        <div class="toolbar">
+                                            <a href="<?= route( "product/{$product[ 'id' ]}" )?>" class="toolbar-tool">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+                                            <a href="<?= route( "product/{$product[ 'id' ]}/edit" )?>" class="toolbar-tool">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                        </div>
 
                                     </td>
 
                                 </tr>
-                                <tr>
-                                    <td><img src="<?php echo asset( '/img/products/case_fan_50x50.png' )?>"></td>
-                                    <td>
-                                        <a href="#">
-                                            MSI Case Fan Normal Series
-                                        </a>
-                                    </td>
-                                    <td>-</td>
-                                    <td>
-                                        <span class="text-green">In Stock</span>
-                                    </td>
-                                    <td>
-                                        Php 250.00
-                                    </td>
-                                    <td>
-                                        <a href="#">
-                                            Case Fan
-                                        </a>
-                                    </td>
-                                    <td>
-                                        01/01/2018
-                                    </td>
-                                    <td>
-                                        <a href="#">
-                                            <button type="button" class="btn btn-info">View</button>
-                                        </a>
-                                        <a href="#">
-                                            <button type="button" class="btn btn-danger">Delete</button>
-                                        </a>
-
-                                    </td>
-
-                                </tr>
+                                <?php endforeach; ?>
 
                                 <tr>
                                     <th>Img</th>
                                     <th>Product Name</th>
                                     <th>SKU</th>
                                     <th>Stock</th>
-                                    <th>Price</th>
+                                    <th>Selling Price</th>
                                     <th>Product Type</th>
                                     <th>Date Updated</th>
                                     <th>Actions</th>

@@ -8,7 +8,17 @@
  */
 function index(){
 
-    return view( 'admin/receivables/receivables');
+    $receivables = rawQuerySelect( '
+    
+    SELECT id, receipt_number, SUM(quantity) as quantity, SUM(unit_price) as unit_price, (SUM(quantity) * SUM(unit_price)) as amount, date_received,
+    ( SELECT DISTINCT supplier_name FROM tbl_receivables INNER JOIN tbl_suppliers WHERE tbl_suppliers.id = tbl_receivables.supplier_id) as supplier_name
+    FROM tbl_receivables 
+    GROUP BY receipt_number 
+    
+    ' );
+
+
+    return view( 'admin/receivables/receivables', compact( 'receivables' ));
 }
 
 
@@ -35,7 +45,9 @@ function show( $resource ){
  */
 function create(){
 
-    return view( 'admin/receivables/add_receivables' );
+    $products = allWithoutTrash( 'products' );
+
+    return view( 'admin/receivables/add_receivables', compact( 'products' )) ;
 
 }
 
@@ -46,19 +58,43 @@ function create(){
  */
 function store(){
 
-    $data = [
+    // Save data to Receivables first per item
+    for( $x = 0; $x < count($_POST['product_id']); $x++ ){
 
-        'receipt_number'    => $_POST[ 'receipt_number' ],
-        'supplier_id'       => $_POST[ 'supplier_id' ],
-        'product_id'        => $_POST[ 'product_id' ],
-        'quantity'          => $_POST[ 'quantity' ],
-        'amount'            => $_POST[ 'amount' ],
-        'receivable_image'  => $_POST[ 'receivable_image' ],
-        'date_received'     => $_POST[ 'receipt_number' ],
+        $rData = [
 
-    ];
+            'receipt_number'    => $_POST['receipt_number'],
+            'supplier_id'       => $_POST['supplier_id'],
+            'product_id'        => $_POST['product_id'][$x],
+            'date_received'     => date( 'Y-m-d', strtotime($_POST['date_received']) ),
+            'quantity'          => $_POST['quantity'][$x],
+            'unit_price'            => $_POST['unit_price'][$x],
+            'is_delete'         => '0'
 
-    return ( insert( 'receivables', $data ) ) ? true : false;
+
+        ];
+
+        insert( 'receivables', $rData );
+
+    }
+
+    //After inserting the records to receivables, update the new stocks.
+
+    for( $x = 0; $x < count($_POST['product_id']); $x++ ){
+
+        $currentStock = get( 'inventory', $_POST['product_id'][$x] )[0]['stock'];
+
+        $sData = [
+
+            'stock' => ($currentStock + $_POST['quantity'][$x]),
+
+        ];
+
+        patch( 'inventory', $_POST['product_id'][$x], $sData);
+
+    }
+
+    redirect( route( 'receivables' ) );
 
 }
 
@@ -91,7 +127,7 @@ function update( $resource ){
         'supplier_id'       => $_POST[ 'supplier_id' ],
         'product_id'        => $_POST[ 'product_id' ],
         'quantity'          => $_POST[ 'quantity' ],
-        'amount'            => $_POST[ 'amount' ],
+        'unit_price'        => $_POST[ 'unit_price' ],
         'receivable_image'  => $_POST[ 'receivable_image' ],
         'date_received'     => $_POST[ 'receipt_number' ],
 
@@ -116,6 +152,6 @@ function update( $resource ){
  */
 function destroy( $resource ){
 
-    return delete( 'receivables', $resource) ? true : false;
+    return softDelete( 'receivables', $resource) ? true : false;
 
 }

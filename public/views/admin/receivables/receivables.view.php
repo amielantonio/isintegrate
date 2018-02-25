@@ -58,61 +58,41 @@
                                     <th>Date Received</th>
                                     <th>Actions</th>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <a href="#">
-                                            OR12345
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a href="#">
-                                            The ABC Computers
-                                        </a>
-                                    </td>
-                                    <td>
-                                        25
-                                    </td>
 
-                                    <td>
-                                        <b>Php 123,456.78</b>
-                                    </td>
-                                    <td>
-                                        Jan 10, 2018
-                                    </td>
-                                    <td>
-                                        <a href="#">
-                                            <button type="button" class="btn btn-primary">View</button>
-                                        </a>
-                                    </td>
-                                </tr>
+                                <?php foreach( $receivables as $key => $receivable ) : ?>
 
                                 <tr>
                                     <td>
-                                        <a href="#">
-                                            OR12346
+                                        <a href="<?= route( "receivable/{$receivable[ 'id' ]}" ) ?>">
+                                            <?= $receivable[ 'receipt_number' ] ?>
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="#">
-                                            The ABC Computers
-                                        </a>
+                                        <?= $receivable[ 'supplier_name' ]?>
                                     </td>
                                     <td>
-                                        25
+                                        <?= $receivable[ 'quantity' ]?>
                                     </td>
 
                                     <td>
-                                        <b>Php 250,312.70</b>
+                                        <b>Php <?= $receivable[ 'amount' ]?></b>
                                     </td>
                                     <td>
-                                        Jan 01, 2018
+                                        <?= date( 'F m, Y', strtotime( $receivable['date_received']) )?>
                                     </td>
                                     <td>
-                                        <a href="#">
-                                            <button type="button" class="btn btn-primary">View</button>
-                                        </a>
+                                        <div class="toolbar">
+                                            <a href="<?= route( "receivable/{$receivable['id']}" ) ?>" class="toolbar-tool">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+                                            <a href="<?= route( "receivable/{$receivable['id']}/destroy" ) ?>" class="toolbar-tool">
+                                                <span class="text-danger"><i class="fa fa-trash"></i></span>
+                                            </a>
+
+                                        </div>
                                     </td>
                                 </tr>
+                                <?php endforeach; ?>
 
                                 <tr>
                                     <th>OR#</th>

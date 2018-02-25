@@ -23,11 +23,29 @@
                 </a>
             </li>
 
-            <li>
-                <a href="<?= route('receivables') ?>">
+            <li class="treeview">
+                <a href="#">
                     <i class="fa fa-pencil-square-o"></i>
                     <span>Receivables</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
                 </a>
+
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="<?= route('receivables') ?>">
+                            <i class="fa fa-circle-o"></i> View Receivables
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="<?= route('receivables/create') ?>">
+                            <i class="fa fa-circle-o"></i> New Receivables
+                        </a>
+                    </li>
+
+                </ul>
             </li>
 
             <li class="treeview">
@@ -78,6 +96,11 @@
 
                 <ul class="treeview-menu">
                     <li>
+                        <a href="<?= route('order/create') ?>">
+                            <i class="fa fa-circle-o"></i> Add New Order
+                        </a>
+                    </li>
+                    <li>
                         <a href="<?= route('order') ?>">
                             <i class="fa fa-circle-o"></i> View Order Log
                         </a>
@@ -90,11 +113,11 @@
                 </ul>
             </li>
 
-            <li>
-                <a href="<?= route('report') ?>">
-                    <i class="fa fa-bar-chart"></i> <span>Reports</span>
-                </a>
-            </li>
+<!--            <li>-->
+<!--                <a href="--><?//= route('report') ?><!--">-->
+<!--                    <i class="fa fa-bar-chart"></i> <span>Reports</span>-->
+<!--                </a>-->
+<!--            </li>-->
 
             <li class="treeview">
                 <a href="#">

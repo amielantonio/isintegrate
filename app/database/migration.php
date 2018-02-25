@@ -42,9 +42,10 @@ $Migration['receivables'] = [
     'supplier_id'           => [ 'field_type' => 'INT' ],
     'product_id'            => [ 'field_type' => 'INT' ],
     'quantity'              => [ 'field_type' => 'INT' ],
-    'amount'                => [ 'field_type' => 'DECIMAL(10,2)' ],
+    'unit_price'            => [ 'field_type' => 'DECIMAL(10,2)' ],
     'receivable_image'      => [ 'field_type' => 'TEXT' ],
-    'date_received'         => [ 'field_type' => 'DATETIME' ]
+    'date_received'         => [ 'field_type' => 'DATE' ],
+    'is_delete'             => [ 'field_type' => 'INT(1)' ],
 ];
 
 $Migration['products'] = [
