@@ -73,7 +73,7 @@
                                 <button id="add_row" class="btn btn-info" type="button">
                                     <i class="fa fa-plus"></i>
                                 </button>
-                                <button id="add_row" class="btn btn-danger" type="button">
+                                <button id="subtract_row" class="btn btn-danger" type="button">
                                     <i class="fa fa-minus"></i>
                                 </button>
 
@@ -87,7 +87,8 @@
 
                                     <tr>
                                         <td>
-                                            <select id="product_id" class="form-control select2" name="product_id[]" style="width: 100%;">
+                                            <select id="product_id" class="form-control select2 product_id" name="product_id[]" style="width: 100%;">
+                                                <option></option>
                                                 <?php foreach( $products as $key => $product) : ?>
                                                     <option value="<?= $product["id"]?>"><?= $product["product_name"]?></option>
                                                 <?php endforeach; ?>
@@ -187,13 +188,39 @@
 
         });
 
+
+        $( '#subtract_row' ).on( 'click', function(){
+
+            var table = $( '#product_table' );
+
+            table.find( 'tr:last-child').remove();
+
+            console.log( 's');
+
+        });
+
         $( document ).on( 'change', '.product_id', function(){
 
             var sellingInput = $( this ).parent().siblings().find('.selling-price-val');
+            var product_id = $(this).val();
+
+            console.log( product_id );
+
+            var amountInput = $( this ).parent().siblings().find('.amount-val');
 
             $.ajax({
 
-                url: <?= route( 'product' )?>
+                url: "<?= route( 'product' )?>/" + product_id,
+                method: 'GET',
+                success: function( data ){
+                    var product = JSON.parse( data );
+
+                    console.log( data );
+
+                    amountInput.val( product.selling_price );
+
+
+                }
 
             });
 
@@ -201,8 +228,6 @@
         });
 
         $( document ).on( 'blur','.selling-price-val', function(){
-
-            console.log( 'somethig' );
 
             var quantityInput = $( this ).parent().siblings().find('.quantity-val');
             var quantity = quantityInput.val();
