@@ -18,7 +18,7 @@ function index(){
  * Returns all products as json data
  */
 function products(){
-
+//    header('Content-type: application/json');
     $products = allWithoutTrash( 'products' );
 
     echo json_encode($products);
@@ -26,10 +26,11 @@ function products(){
 }
 
 function get_product( $resource ){
-
+//    header('Content-type: application/json');
     $product = get( 'products', $resource );
 
-    echo json_encode( $product );
+    echo json_encode( $product[0] );
+    exit;
 }
 
 /**

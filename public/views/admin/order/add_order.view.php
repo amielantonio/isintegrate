@@ -1,6 +1,6 @@
 <?php admin_get_header(); ?>
 <?php admin_get_nav(); ?>
-<?php admin_get_sidebar(); ?>
+<?php //admin_get_sidebar(); ?>
     <!-- jvectormap -->
     <link rel="stylesheet" href="<?php echo asset( 'plugins/adminlte/bower_components/jvectormap/jquery-jvectormap.css' ) ?>/">
     <!-- bootstrap datepicker -->
@@ -15,7 +15,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                <i class="fa fa-shopping-cart"></i> Orders
+<!--                <i class="fa fa-shopping-cart"></i> Orders-->
             </h1>
 
         </section>
@@ -28,13 +28,17 @@
                 <div class="col-sm-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Add new Order</h3>
+<!--                            <h3 class="box-title">Add new Order</h3>-->
                         </div>
                         <!-- /.box-header -->
 
                         <form method="post" action="<?= route( 'orrder/store' )?>">
                             <div class="box-body">
 
+
+                                <hr>
+                                <h4>Order Information</h4>
+                                <hr>
                                 <div class="row">
 
                                     <div class="col-sm-6">
@@ -46,29 +50,54 @@
 
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="customer_id">Customer name</label>
-                                            <input type="text" name="customer_id" id="customer_id" class="form-control">
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <!--END ROW-->
-
-
-                                <div class="row">
-
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
                                             <label for="date_ordered">Date of Order</label>
                                             <input type="text" name="date_ordered" id="date_ordered" class="form-control">
                                         </div>
                                     </div>
 
+                                </div>
+                                <!-- END ROW-->
+                                <hr>
+                                <h4>Customer Information</h4>
+                                <hr>
+
+                                <div class="row">
+
                                     <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="customer_id">Customer Name</label>
+                                            <input type="text" name="customer_id" id="customer_id" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <label for="contact_number">Contact Number</label>
+                                        <input type="text" name="contact_number" id="contact_number" class="form-control">
                                     </div>
 
                                 </div>
                                 <!--END ROW-->
+
+                                <div class="row">
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="address">Address</label>
+                                            <input type="text" name="address" id="address" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <label for="email">Email</label>
+                                        <input type="text" name="email" id="email" class="form-control">
+                                    </div>
+
+                                </div>
+                                <!--END ROW-->
+
+                                <hr>
+                                <h4>Products</h4>
+                                <hr>
 
                                 <button id="add_row" class="btn btn-info" type="button">
                                     <i class="fa fa-plus"></i>
@@ -195,30 +224,23 @@
 
             table.find( 'tr:last-child').remove();
 
-            console.log( 's');
-
         });
+
+        //
 
         $( document ).on( 'change', '.product_id', function(){
 
             var sellingInput = $( this ).parent().siblings().find('.selling-price-val');
             var product_id = $(this).val();
 
-            console.log( product_id );
-
-            var amountInput = $( this ).parent().siblings().find('.amount-val');
-
             $.ajax({
 
-                url: "<?= route( 'product' )?>/" + product_id,
+                url: "<?= route( 'product' )?>/" + product_id + "/get",
                 method: 'GET',
                 success: function( data ){
                     var product = JSON.parse( data );
 
-                    console.log( data );
-
-                    amountInput.val( product.selling_price );
-
+                    sellingInput.val( product.selling_price );
 
                 }
 
@@ -227,6 +249,8 @@
 
         });
 
+
+        // Blur events
         $( document ).on( 'blur','.selling-price-val', function(){
 
             var quantityInput = $( this ).parent().siblings().find('.quantity-val');
@@ -238,12 +262,24 @@
             if( quantity === "") return;
 
 
-            amountInput.val( unitprice * quantity );
-
-
+            amountInput.val( parseFloat(unitprice) * parseFloat(quantity).toFixed(2) );
 
         });
 
+        $( document ).on( 'blur', '.quantity-val', function(){
+
+            var sellingInput = $( this ).parent().siblings().find('.selling-price-val');
+            var selling = sellingInput.val();
+
+            var amountInput = $( this ).parent().siblings().find('.amount-val');
+            var quantity = $( this ).val();
+
+            if( selling === "") return;
+
+            amountInput.val( parseFloat(selling) * parseFloat(quantity).toFixed(2) );
+
+        });
 
     </script>
+
 <?php admin_get_footer(); ?>
