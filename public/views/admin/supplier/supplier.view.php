@@ -24,7 +24,7 @@
                 <div class="col-sm-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Receivables</h3>
+                            <h3 class="box-title">View Supplier</h3>
 
                             <div class="box-tools" style="display: flex">
 
