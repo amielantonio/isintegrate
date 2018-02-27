@@ -1,6 +1,6 @@
 <?php admin_get_header(); ?>
 <?php admin_get_nav(); ?>
-<?php //admin_get_sidebar(); ?>
+<?php admin_get_sidebar(); ?>
     <!-- jvectormap -->
     <link rel="stylesheet" href="<?php echo asset( 'plugins/adminlte/bower_components/jvectormap/jquery-jvectormap.css' ) ?>/">
     <!-- bootstrap datepicker -->
@@ -66,13 +66,22 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="customer_id">Customer Name</label>
-                                            <input type="text" name="customer_id" id="customer_id" class="form-control">
+
+                                            <select class="form-control select2 customer_name" name="customer_name" style="width: 100%;">
+                                                <option></option>
+                                                <?php foreach( $customers as $key => $customer) : ?>
+                                                    <option value="<?= $customer["id"]?>"><?= $customer["customer_name"]?></option>
+                                                <?php endforeach; ?>
+                                                <option value="new">New Customer</option>
+                                            </select>
+
+                                            <input type="text" name="customer_name" id="customer_name" class="form-control toggle-hidden" placeholder="Customer Name">
                                         </div>
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="contact_number">Contact Number</label>
-                                        <input type="text" name="contact_number" id="contact_number" class="form-control">
+                                        <input type="text" name="contact_number" id="contact_number" class="form-control readonly" readonly="readonly">
                                     </div>
 
                                 </div>
@@ -83,13 +92,13 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="address">Address</label>
-                                            <input type="text" name="address" id="address" class="form-control">
+                                            <input type="text" name="address" id="address" class="form-control readonly">
                                         </div>
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="email">Email</label>
-                                        <input type="text" name="email" id="email" class="form-control">
+                                        <input type="text" name="email" id="email" class="form-control readonly" readonly="readonly">
                                     </div>
 
                                 </div>
@@ -134,7 +143,6 @@
                                         </td>
 
                                     </tr>
-
 
 
                                 </table>
@@ -189,6 +197,8 @@
         //Initialize Select2 Elements
         $('.select2').select2();
 
+
+        // Add Row
         $( '#add_row' ).on( 'click', function(){
 
             var table = $( '#product_table' );
@@ -217,7 +227,7 @@
 
         });
 
-
+        //Subtract Row
         $( '#subtract_row' ).on( 'click', function(){
 
             var table = $( '#product_table' );
@@ -226,8 +236,7 @@
 
         });
 
-        //
-
+        // Product Dropdown change event
         $( document ).on( 'change', '.product_id', function(){
 
             var sellingInput = $( this ).parent().siblings().find('.selling-price-val');
@@ -279,6 +288,67 @@
             amountInput.val( parseFloat(selling) * parseFloat(quantity).toFixed(2) );
 
         });
+
+        $( '.customer_name' ).on( 'change', function(){
+
+            var readonly = $( '.readonly' );
+
+            if( $( this ).val() === "new"){
+                readonly.each( function(){
+
+                    $( this ).removeAttr( 'readonly' );
+
+                });
+
+                $( '.toggle-hidden' ).css({
+                    'display'       : 'block',
+                    'margin-top'    : '5px'
+                });
+
+
+            }else{
+
+
+                var value = $( this ).val();
+
+                $.ajax({
+                    url: "<?= route( 'customers/' ) ?>" + value + "/get",
+                    method: 'GET,
+                    success: function( data ){
+
+                        customerInfo = JSON.parse( data );
+
+
+                        $( '#contact_number' ).val( customerInfo.contact_number );
+                        $( '#address' ).val( customerInfo.address );
+                        $( '#email' ).val( customerInfo.email );
+
+                    }
+
+
+                });
+
+
+                //Hide display
+                $( '.toggle-hidden' ).css({
+                    'display'       : 'none'
+                });
+
+                //Add readonly to each
+                readonly.each( function(){
+
+                    $( this ).prop( 'readonly', true );
+
+                });
+
+            }
+
+
+
+        });
+
+
+
 
     </script>
 

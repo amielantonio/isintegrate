@@ -508,3 +508,8 @@ textarea{
     padding: 10px;
     margin: 5px;
 }
+
+
+.toggle-hidden{
+    display: none;
+}
