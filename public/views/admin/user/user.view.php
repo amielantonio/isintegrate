@@ -43,20 +43,18 @@
                                     <th>Phone</th>
                                     <th>Access Level</th>
                                 </tr>
+
+                                <?php $x = 1;foreach( $users as $key => $user) : ?>
                                 <tr>
-                                    <td>1</td>
-                                    <td>Paula Baluyut</td>
-                                    <td>something@gmail.com</td>
-                                    <td>0975-222-1234</td>
-                                    <td><span class="label label-primary">Store Manager</span></td>
+                                    <td><?= $x ?></td>
+                                    <td><?= $user['firstname']." ".$user['lastname']?></td>
+                                    <td><?= $user['email']?></td>
+                                    <td><?= $user['contact_number'] ?></td>
+                                    <td><span class="label label-primary"><?= $user['access_level']?></span></td>
                                 </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>John Doe</td>
-                                    <td>something@gmail.com</td>
-                                    <td>0975-222-1234</td>
-                                    <td><span class="label label-success">Staff</span></td>
-                                </tr>
+                                <?php $x++; endforeach; ?>
+
+
                                 </tbody></table>
                         </div>
 
@@ -64,7 +62,6 @@
                             <ul class="pagination pagination-sm no-margin pull-right">
                                 <li><a href="#">«</a></li>
                                 <li><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
                                 <li><a href="#">»</a></li>
                             </ul>
                         </div>
