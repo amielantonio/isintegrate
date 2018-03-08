@@ -141,7 +141,7 @@ function store(){
 
     }
 
-    redirect( route( 'product' ) );
+    redirect( route( 'product/create' ) );
 }
 
 

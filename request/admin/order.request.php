@@ -10,10 +10,10 @@ function index(){
 
     $orders = rawQuerySelect( '
     
-    SELECT id, receipt_number, SUM(quantity) as quantity, SUM(unit_price) as unit_price, (SUM(quantity) * SUM(unit_price)) as amount, date_received,
-    ( SELECT DISTINCT supplier_name FROM tbl_receivables INNER JOIN tbl_suppliers WHERE tbl_suppliers.id = tbl_receivables.supplier_id) as supplier_name
-    FROM tbl_receivables 
-    GROUP BY receipt_number 
+    SELECT order_id, order_status, SUM(quantity) as quantity, SUM(selling_price) as selling_price, (SUM(quantity) * SUM(selling_price)) as amount, date_ordered,
+    ( SELECT DISTINCT customer_name FROM tbl_orders INNER JOIN tbl_customers WHERE tbl_customers.id = tbl_orders.customer_id) as customer_name
+    FROM tbl_orders 
+    GROUP BY order_id 
     
     ' );
 
@@ -54,9 +54,8 @@ function store(){
     //If the customer does not exist, save the information then get the ID
     //Else, get the information
     $id = get(  'customers', $_POST['customer_name'] );
-    $cData = [];
 
-    if( empty( $id ) ){
+    if(  !$id  ){
 
         $cData = [
 
@@ -73,6 +72,8 @@ function store(){
 
         //Insert Customer Information
         insert( 'customers', $cData );
+
+        $getID = where( 'customers', "customer_name = '{$_POST['customer_name']}' " )[0]['id'];
     }
 
 
@@ -83,12 +84,12 @@ function store(){
         $data = [
 
             'order_id'      => $_POST['order_id'],
-            'customer_id'   => $_POST['customer_id'],
+            'customer_id'   => ( $id )? $_POST['customer_name'] : $getID,
             'product_id'    => $_POST['product_id'][$x],
             'quantity'      => $_POST['quantity'][$x],
             'selling_price' => $_POST['selling_price'][$x],
             'order_status'  => 'Pending', //Default value is pending. need to approve first in the pending order page
-            'date_ordered'  => $_POST['date_ordered'],
+            'date_ordered'  => date( 'Y-m-d H:i:s' , strtotime( $_POST['date_ordered'] . date( 'H:i:s' ) )),
 
         ];
 
@@ -106,6 +107,7 @@ function store(){
  *
  * @param $resource
  * @return mixed
+ * @throws exception
  */
 function edit( $resource ){
 

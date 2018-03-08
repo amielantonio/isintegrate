@@ -53,23 +53,27 @@
                                 </tr>
 
 
-                                <?php foreach( $orders as $key=>$order) : ?>
+                                <?php $x = 1; foreach( $orders as $key=>$order) : ?>
                                 <tr>
-                                    <td>1</td>
+                                    <td><?= $x ?></td>
                                     <td>
                                         <a href="#">
-                                            <?= $order[''] ?>
+                                            <?= $order['order_id'] ?>
                                         </a>
                                     </td>
                                     <td>
                                         <a href="#">
-                                            PC Console
+                                            <?= $order['customer_name'] ?>
                                         </a>
                                     </td>
-                                    <td>100</td>
-                                    <td>Php 100,000.00</td>
-                                    <td><span class="label label-info">Shipped</span></td>
-                                    <td>Jan 01, 2018</td>
+                                    <td><?= $order['quantity'] ?></td>
+                                    <td><?= $order['amount'] ?></td>
+                                    <td>
+                                        <span class="label label-<?php if($order['order_status'] == 'Shipped'){ echo "info"; }elseif($order['order_status'] == 'Pending'){ echo "warning"; }else{ echo 'danger'; }  ?>">
+                                            <?= $order['order_status'] ?>
+                                        </span>
+                                    </td>
+                                    <td><?= date( 'F d, Y - h:i a', strtotime( $order['date_ordered'] )) ?></td>
                                     <td>
                                         <a href="#">
                                             <button type="button" class="btn btn-primary">
@@ -78,7 +82,7 @@
                                         </a>
                                     </td>
                                 </tr>
-                                <?php endforeach; ?>
+                                <?php $x++; endforeach; ?>
 
                                 <tr>
                                     <th>#</th>

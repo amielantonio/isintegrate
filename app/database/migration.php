@@ -73,7 +73,7 @@ $Migration['product_brands'] = [
 
 $Migration['orders'] = [
     'id'                    => [ 'field_type'  => 'INT', 'key' => 'PRIMARY KEY AUTO_INCREMENT' ],
-    'order_id'              => [ 'field_type' => 'INT' ],
+    'order_id'              => [ 'field_type' => 'VARCHAR(15)' ],
     'customer_id'           => [ 'field_type' => 'INT' ],
     'product_id'            => [ 'field_type' => 'INT' ],
     'quantity'              => [ 'field_type' => 'INT' ],

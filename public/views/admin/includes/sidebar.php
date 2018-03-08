@@ -192,26 +192,15 @@
                 </ul>
             </li>
 
-            <li class="treeview">
-                <a href="#">
+            <li class="">
+                <a href="<?= route('settings/sms-settings') ?>">
                     <i class="fa fa-wrench"></i> <span>Settings</span>
                     <span class="pull-right-container">
                       <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
 
-                <ul class="treeview-menu">
-                    <li>
-                        <a href="<?= route('inventory-settings') ?>">
-                            <i class="fa fa-circle-o"></i> Inventory Settings
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?= route('notification-settings') ?>">
-                            <i class="fa fa-circle-o"></i> Notification Settings
-                        </a>
-                    </li>
-                </ul>
+
             </li>
 
         </ul>

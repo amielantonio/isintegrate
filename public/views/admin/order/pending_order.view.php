@@ -41,32 +41,37 @@
                                     <th>Actions</th>
                                 </tr>
 
+
+                                <?php $x = 1;foreach( $orders as $key => $order) : ?>
                                 <tr>
-                                    <td>1</td>
+                                    <td><?= $x ?></td>
                                     <td>
                                         <a href="#">
-                                            OR12345
+                                            <?= $order['order_id'] ?>
                                         </a>
                                     </td>
                                     <td>
                                         <a href="#">
-                                            PC Console
+                                            <?= $order['customer_name'] ?>
                                         </a>
                                     </td>
-                                    <td>100</td>
-                                    <td>Php 100,000.00</td>
-                                    <td>Jan 01, 2018</td>
+                                    <td><?= $order['quantity'] ?></td>
+                                    <td><?= $order['amount'] ?></td>
+                                    <td><?= date( 'F d,Y - h:i a', strtotime( $order['date_ordered'] ) ) ?></td>
                                     <td>
-                                        <a href="#">
+                                        <a href="<?= route( "order/pending/{$order['order_id']}/shipped" )?>">
                                             <button type="button" class="btn btn-primary">
                                                 Shipped
                                             </button>
+                                        </a>
+                                        <a href="<?= route( "order/pending/{$order['order_id']}/cancelled" )?>">
                                             <button type="button" class="btn btn-danger">
                                                 Canceled
                                             </button>
                                         </a>
                                     </td>
                                 </tr>
+                                <?php $x++; endforeach; ?>
 
 
                                 <tr>
@@ -75,7 +80,6 @@
                                     <th>Customer Name</th>
                                     <th>Qty</th>
                                     <th>Amount</th>
-                                    <th>Order Status</th>
                                     <th>Date Ordered</th>
                                     <th>Actions</th>
                                 </tr>

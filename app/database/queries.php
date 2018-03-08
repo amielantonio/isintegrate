@@ -72,7 +72,7 @@ function get($table, $key ){
         return $statement->fetchAll();
     }
     catch( PDOException $e ) {
-        throw new PDOException($e->getMessage());
+        return false;
     }
 
 }
