@@ -101,7 +101,12 @@ function store(){
 }
 
 
-
+/**
+ * Show a form to edit the specified resource
+ *
+ * @param $resource
+ * @return mixed
+ */
 function edit( $resource ){
 
     $order = get( 'orders', $resource );
@@ -109,6 +114,11 @@ function edit( $resource ){
     return view( 'admin/order/add_order', compact( 'order' ) );
 }
 
+/**
+ * Updates the sepcified resource
+ *
+ * @param $resource
+ */
 function update( $resource ){
 
 

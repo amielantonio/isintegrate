@@ -52,11 +52,13 @@
                                     <th>Actions</th>
                                 </tr>
 
+
+                                <?php foreach( $orders as $key=>$order) : ?>
                                 <tr>
                                     <td>1</td>
                                     <td>
                                         <a href="#">
-                                            OR12345
+                                            <?= $order[''] ?>
                                         </a>
                                     </td>
                                     <td>
@@ -76,31 +78,7 @@
                                         </a>
                                     </td>
                                 </tr>
-
-                                <tr>
-                                    <td>2</td>
-                                    <td>
-                                        <a href="#">
-                                            OR12345
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a href="#">
-                                            PC Console
-                                        </a>
-                                    </td>
-                                    <td>100</td>
-                                    <td>Php 100,000.00</td>
-                                    <td><span class="label label-warning">Pending</span></td>
-                                    <td>Jan 01, 2018</td>
-                                    <td>
-                                        <a href="#">
-                                            <button type="button" class="btn btn-primary">
-                                                View
-                                            </button>
-                                        </a>
-                                    </td>
-                                </tr>
+                                <?php endforeach; ?>
 
                                 <tr>
                                     <th>#</th>

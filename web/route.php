@@ -109,6 +109,23 @@ $Route['warranty'] = [
     'action' => 'resource'
 ];
 
+
+//SETTINGS
+
+
+$Route['settings/sms-settings'] = [
+    'request' => 'admin/sms_settings',
+    'action' => 'resource'
+
+];
+
+$Route['settings/inventory-settings'] = [
+    'request' => 'admin/inventory_settings',
+    'action' => 'resource'
+];
+
+//END SETTINGS
+
 $Route['supplier'] = [
     'request' => 'admin/supplier',
     'action' => 'resource'
