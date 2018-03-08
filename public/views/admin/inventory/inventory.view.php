@@ -67,7 +67,7 @@
                                 <tr>
                                     <td><img src="<?php echo asset( $product[ 'product_image' ] )?>" class="img-display img-display--table"></td>
                                     <td>
-                                        <a href="<?= route( "product/{$product[ 'id' ]}" )?>">
+                                        <a href="<?= route( "product/{$product[ 'id' ]}/edit}" )?>">
                                             <?= $product[ 'product_name' ]?>
                                         </a>
                                     </td>
@@ -108,11 +108,10 @@
                                     <td>
 
                                         <div class="toolbar">
-                                            <a href="<?= route( "product/{$product[ 'id' ]}" )?>" class="toolbar-tool">
-                                                <i class="fa fa-eye"></i>
-                                            </a>
                                             <a href="<?= route( "product/{$product[ 'id' ]}/edit" )?>" class="toolbar-tool">
-                                                <i class="fa fa-edit"></i>
+                                                <button type="button" class="btn btn-primary">
+                                                    View
+                                                </button>
                                             </a>
                                         </div>
 

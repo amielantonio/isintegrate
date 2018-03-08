@@ -26,27 +26,17 @@
                         <div class="box-header">
                             <h3 class="box-title"><?= isset( $supplier )? "Edit" : "Add New"?> Supplier</h3>
 
-                            <div class="box-tools" style="display: flex">
-
-                                <div class="input-group input-group-sm" style="width: 200px;">
-                                    <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
-
-                                    <div class="input-group-btn">
-                                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <!-- /.box-header -->
 
-                        <form action="<?= isset( $supplier )? route( "supplier/{$supplier['id']}/update" ) : route( 'supplier/store' ) ?>">
+                        <form action="<?= isset( $supplier )? route( "supplier/{$supplier[0]['id']}/update" ) : route( 'supplier/store' ) ?>" method="post">
 
                             <div class="box-body">
 
                                 <div class="form-group">
 
                                     <label for="supplier_name">Supplier name</label>
-                                    <input type="text" class="form-control" id="supplier_name" name="supplier_name" value="<?= isset( $supplier )? $supplier['supplier_name'] : ""?>">
+                                    <input type="text" class="form-control" id="supplier_name" name="supplier_name" value="<?= isset( $supplier )? $supplier[0]['supplier_name'] : ""?>">
 
                                 </div>
                                 <!-- /.form-group -->
@@ -54,7 +44,7 @@
                                 <div class="form-group">
 
                                     <label for="contact">Contact Person</label>
-                                    <input type="text" class="form-control" id="contact" name="contact" value="<?= isset( $supplier )? $supplier['contact'] : ""?>">
+                                    <input type="text" class="form-control" id="contact" name="contact" value="<?= isset( $supplier )? $supplier[0]['contact'] : ""?>">
 
                                 </div>
                                 <!-- /.form-group -->
@@ -62,7 +52,7 @@
                                 <div class="form-group">
 
                                     <label for="contact_position">Position</label>
-                                    <input type="text" class="form-control" id="contact_position" name="contact_position" value="<?= isset( $supplier )? $supplier['contact_position'] : ""?>">
+                                    <input type="text" class="form-control" id="contact_position" name="contact_position" value="<?= isset( $supplier )? $supplier[0]['contact_position'] : ""?>">
 
                                 </div>
                                 <!-- /.form-group -->
@@ -70,7 +60,7 @@
                                 <div class="form-group">
 
                                     <label for="supplier_address">Supplier's Address</label>
-                                    <input type="text" class="form-control" id="supplier_address" name="supplier_address" value="<?= isset( $supplier )? $supplier['supplier_address'] : ""?>">
+                                    <input type="text" class="form-control" id="supplier_address" name="supplier_address" value="<?= isset( $supplier )? $supplier[0]['supplier_address'] : ""?>">
 
                                 </div>
                                 <!-- /.form-group -->
@@ -78,15 +68,15 @@
                                 <div class="form-group">
 
                                     <label for="contact_info">Contact information</label>
-                                    <input type="text" class="form-control" id="contact_info" name="contact_info" value="<?= isset( $supplier )? $supplier['contact_info'] : ""?>">
+                                    <input type="text" class="form-control" id="contact_info" name="contact_info" value="<?= isset( $supplier )? $supplier[0]['contact_info'] : ""?>">
 
                                 </div>
                                 <!-- /.form-group -->
 
                                 <div class="form-group">
 
-                                    <label for="email_address">Email Address</label>
-                                    <input type="text" class="form-control" id="supplier_name" name="supplier_name" value="<?= isset( $supplier )? $supplier['email'] : ""?>">
+                                    <label for="email">Email Address</label>
+                                    <input type="text" class="form-control" id="email" name="email" value="<?= isset( $supplier )? $supplier[0]['email'] : ""?>">
 
                                 </div>
                                 <!-- /.form-group -->

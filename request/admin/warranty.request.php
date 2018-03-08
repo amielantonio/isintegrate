@@ -1,9 +1,16 @@
 <?php
 
-
+/**
+ * Show all Warranties
+ *
+ * @return mixed
+ * @throws exception
+ */
 function index(){
 
-    return view( 'admin/warranty/warranty' );
+    $warranties = rawQuerySelect( 'SELECT * FROM tbl_warranties INNER JOIN tbl_products ON tbl_warranties.product_id = tbl_products.id' );
+
+    return view( 'admin/warranty/warranty', compact( 'warranties' ) );
 }
 
 function show( $resource ){
@@ -16,7 +23,9 @@ function show( $resource ){
 
 function create(){
 
-    return view( 'admin/warranty/add_warranty' );
+    $products = allWithoutTrash( 'products' );
+
+    return view( 'admin/warranty/add_warranty', compact( 'products' ) );
 
 }
 
@@ -40,14 +49,13 @@ function edit( $resource ){
 
     $warranty = get( 'warranty', $resource );
 
-    return view( 'admin/warranty/add_warranty', $warranty );
+    return view( 'admin/warranty/add_warranty', compact( 'warranty' ) );
 }
 
 function update( $resource ){
 
     $data = [
 
-        'product_id' => $_POST['product_id'],
         'warranty_duration' => $_POST['warranty_duration'],
         'created_at' => date( 'Y-m-d H:i:s' ),
         'updated_at' => date( 'Y-m=d H:i:s' )

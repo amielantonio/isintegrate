@@ -92,14 +92,23 @@ function shipped( $resource ){
 
 function cancelled( $resource ){
 
-    $id = where( 'orders', "order_id = '{$resource}'" )[0]['id'];
+    $order = where( 'orders', "order_id = '{$resource}'" );
 
+    //Change the Order status to Shipped
     $data = [
         'order_status' => 'Cancelled'
     ];
 
 
-    patch( 'orders', $id, $data );
+    foreach( $order as $key=>$ord ){
+
+        $id = $ord['id'];
+
+        patch( 'orders', $id, $data );
+
+
+
+    }
 }
 
 

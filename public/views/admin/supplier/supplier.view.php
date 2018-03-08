@@ -52,19 +52,21 @@
                                     <th>Actions</th>
                                 </tr>
 
+                                <?php $x = 1;foreach( $suppliers as $key => $supplier ) : ?>
                                 <tr>
-                                    <td>1</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td><?= $x ?></td>
+                                    <td><?= $supplier['supplier_name']?></td>
+                                    <td><?= $supplier['contact']?></td>
+                                    <td><?= $supplier['supplier_address']?></td>
+                                    <td><?= $supplier['email']?></td>
+                                    <td><?= $supplier['contact_info']?></td>
                                     <td>
-                                        <a href="#">
+                                        <a href="<?= route( "supplier/{$supplier['id']}/edit" ) ?>">
                                             <button type="button" class="btn btn-primary">View</button>
                                         </a>
                                     </td>
                                 </tr>
+                                <?php $x++;endforeach; ?>
 
                                 <tr>
                                     <th>#</th>

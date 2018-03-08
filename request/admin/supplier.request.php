@@ -4,6 +4,7 @@
  * Returns all resources
  *
  * @return mixed
+ * @throws exception
  */
 function index(){
 
@@ -17,6 +18,7 @@ function index(){
  * Returns a form to create a new resource
  *
  * @return mixed
+ * @throws exception
  */
 function create(){
 
@@ -47,11 +49,7 @@ function store(){
 
     $result = insert( 'suppliers', $data );
 
-    if( !$result ){
-        return false;
-    }
-
-    return true;
+   redirect( route( 'supplier' ) );
 
 }
 
@@ -60,6 +58,7 @@ function store(){
  *
  * @param $resource
  * @return mixed
+ * @throws exception
  */
 function edit( $resource ){
 
@@ -91,11 +90,7 @@ function update( $resource ){
 
     $result = patch( 'suppliers', $resource, $data);
 
-    if( !$result ){
-        return false;
-    }
-
-    return true;
+    redirect( route("supplier/{$resource}/edit"  ) );
 }
 
 function destroy( $resource ){

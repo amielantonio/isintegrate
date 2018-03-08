@@ -46,21 +46,23 @@
                                 <th>Product Brand</th>
                                 <th>Warranty Duration</th>
                                 <th>Date added</th>
-                                <th>Actions</th>
+<!--                                <th>Actions</th>-->
                             </tr>
 
+                            <?php $x = 1;foreach( $warranties as $key => $warranty ) : ?>
                             <tr>
-                                <td>1</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <a href="#">
-                                        <button type="button" class="btn btn-primary">View</button>
-                                    </a>
-                                </td>
+                                <td><?= $x?></td>
+                                <td><?= $warranty['product_name']?></td>
+                                <td><?= $warranty['product_brand']?></td>
+                                <td><?= $warranty['warranty_duration']?></td>
+                                <td><?= date( 'F d, Y', strtotime( $warranty['created_at'] ) )?></td>
+<!--                                <td>-->
+<!--                                    <a href="--><?//= route( "warranty/{$warranty['id']}/edit" ) ?><!--">-->
+<!--                                        <button type="button" class="btn btn-primary">View</button>-->
+<!--                                    </a>-->
+<!--                                </td>-->
                             </tr>
+                            <?php $x++;endforeach; ?>
 
                             <tr>
                                 <th>#</th>
@@ -68,7 +70,7 @@
                                 <th>Product Brand</th>
                                 <th>Warranty Duration</th>
                                 <th>Date added</th>
-                                <th>Actions</th>
+<!--                                <th>Actions</th>-->
                             </tr>
                             </tbody></table>
                     </div>

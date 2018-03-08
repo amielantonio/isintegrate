@@ -3,6 +3,8 @@
 <?php admin_get_sidebar(); ?>
     <!-- jvectormap -->
     <link rel="stylesheet" href="<?php echo asset( '/plugins/adminlte/bower_components/jvectormap/jquery-jvectormap.css' ) ?>">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="<?php echo asset( 'plugins/adminlte/bower_components/select2/dist/css/select2.min.css' ) ?>">
 
 
 
@@ -38,7 +40,7 @@
                     <!-- /.box-header -->
 
 
-                    <form action="<?= isset( $warranty )? route( "warranty/{$warranty['id']}/update" ) : route( 'warranty/store' ) ?>" method="post">
+                    <form action="<?= isset( $warranty )? route( "warranty/{$warranty[0]['id']}/update" ) : route( 'warranty/store' ) ?>" method="post">
 
                         <div class="box-body">
 
@@ -46,7 +48,7 @@
 
                                 <label for="product_id">Product Name</label>
                                 <select class="select2 form-control" id="product_id" name="product_id">
-                                    <option value="<?= isset( $warranty )? $warranty['id'] : ""?>"><?= isset( $warranty )? $warranty['product_name'] : ""?></option>
+                                    <option value="<?= isset( $warranty )? $warranty[0]['id'] : ""?>"><?= isset( $warranty )? $warranty[0]['product_name'] : ""?></option>
                                     <?php foreach( $products as $key => $product) : ?>
                                         <option value="<?= $product['id'] ?>"><?= $product['product_name'] ?></option>
                                     <?php endforeach; ?>
@@ -97,4 +99,12 @@
     <!-- jvectormap  -->
     <script src="<?php echo asset( '/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js' ) ?>"></script>
     <script src="<?php echo asset( '/plugins/jvectormap/jquery-jvectormap-world-mill-en.js' ) ?>"></script>
+
+    <!-- Select2 -->
+    <script src="<?php echo asset( 'plugins/adminlte/bower_components/select2/dist/js/select2.full.min.js' ) ?>"></script>
+    <script>
+        $ = jQuery;
+        //Initialize Select2 Elements
+        $('.select2').select2()
+    </script>
 <?php admin_get_footer(); ?>
