@@ -198,6 +198,14 @@
             $('.select2').select2();
 
         });
+        //Subtract Row
+        $( '#subtract_row' ).on( 'click', function(){
+
+            var table = $( '#product_table' );
+
+            table.find( 'tr:last-child').remove();
+
+        });
 
         $( document ).on( 'blur','.unit-price-val', function(){
 

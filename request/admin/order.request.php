@@ -8,7 +8,14 @@
  */
 function index(){
 
-    $orders = allWithoutTrash( 'orders' );
+    $orders = rawQuerySelect( '
+    
+    SELECT id, receipt_number, SUM(quantity) as quantity, SUM(unit_price) as unit_price, (SUM(quantity) * SUM(unit_price)) as amount, date_received,
+    ( SELECT DISTINCT supplier_name FROM tbl_receivables INNER JOIN tbl_suppliers WHERE tbl_suppliers.id = tbl_receivables.supplier_id) as supplier_name
+    FROM tbl_receivables 
+    GROUP BY receipt_number 
+    
+    ' );
 
     return view( 'admin/order/order', compact( 'orders' ));
 }

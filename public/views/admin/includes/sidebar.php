@@ -96,6 +96,16 @@
 
                 <ul class="treeview-menu">
                     <li>
+                        <a href="<?= route('order') ?>">
+                            <i class="fa fa-circle-o"></i> View Order Log
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?= route('customer') ?>">
+                            <i class="fa fa-circle-o"></i> View Customers
+                        </a>
+                    </li>
+                    <li>
                         <a href="<?= route('order/create') ?>">
                             <i class="fa fa-circle-o"></i> Add New Order
                         </a>
@@ -106,24 +116,13 @@
                         </a>
                     </li>
                     <li>
-                        <a href="<?= route('order') ?>">
-                            <i class="fa fa-circle-o"></i> View Order Log
-                        </a>
-                    </li>
-                    <li>
                         <a href="<?= route('customer') ?>">
-                            <i class="fa fa-circle-o"></i> View Customers
+                            <i class="fa fa-circle-o"></i> <span class="text-danger">Trash</span>
                         </a>
                     </li>
+
                 </ul>
             </li>
-
-<!--            <li>-->
-<!--                <a href="--><?//= route('report') ?><!--">-->
-<!--                    <i class="fa fa-bar-chart"></i> <span>Reports</span>-->
-<!--                </a>-->
-<!--            </li>-->
-
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-file"></i>
