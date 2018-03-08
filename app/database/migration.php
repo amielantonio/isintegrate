@@ -137,7 +137,11 @@ $Migration['accounts'] = [
     'updated_at'            => [ 'field_type' => 'DATETIME' ]
 ];
 
-
+$Migration['settings'] = [
+    'id'                    => [ 'field_type'  => 'INT', 'key' => 'PRIMARY KEY AUTO_INCREMENT' ],
+    'sms_key'               => [ 'field_type' => 'VARCHAR(50)' ],
+    'phone_number'          => [ 'field_type' => 'VARCHAR(50)' ],
+];
 
 
 
