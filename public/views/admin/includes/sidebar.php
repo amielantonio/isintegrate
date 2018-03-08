@@ -86,9 +86,17 @@
 
 
             <li class="treeview">
+                <?php
+
+
+                $orders = count( rawQuerySelect( 'SELECT DISTINCT order_id FROM tbl_orders WHERE order_status = "Pending"' ) );
+
+                ?>
+
+
                 <a href="#">
                     <i class="fa fa-shopping-cart"></i>
-                    <span>Orders</span>
+                    <span>Orders</span> <span class="badge"><?= $orders > 0 ? $orders : "" ?></span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
@@ -112,7 +120,7 @@
                     </li>
                     <li>
                         <a href="<?= route('order/pending') ?>">
-                            <i class="fa fa-circle-o"></i> Pending Order
+                            <i class="fa fa-circle-o"></i> Pending Order <span class="badge"><?= $orders > 0 ? $orders : "" ?></span>
                         </a>
                     </li>
                     <li>

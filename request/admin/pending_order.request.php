@@ -52,19 +52,41 @@ function shipped( $resource ){
 
     for( $x = 0; $x < count($order); $x++ ){
 
-        $currentStock = get( 'inventory', $order[$x]['product_id'] )[0]['stock'];
+        $currentStock = get( 'inventory', $order[$x]['product_id'] );
 
         $sData = [
-            'stock' => ( $currentStock - $order[$x]['quantity'])
+            'stock' => ( $currentStock[0]['stock'] - $order[$x]['quantity'])
         ];
 
         patch( 'inventory', $order[$x]['product_id'], $sData );
 
+
+        //SMS SETTINGS
+        if( ( $currentStock[0]['stock'] - $order[$x]['quantity'] ) <= $currentStock[0]['stock_limit'] && ( $currentStock[0]['stock'] - $order[$x]['quantity'] ) > 0 ){
+
+            $settings = get( 'settings', 1);
+
+            $product = get( 'products', $order[$x]['product_id'] )[0]['product_name'];
+
+            $message = "{$product} low on stock";
+
+            itexmo( $settings[0]['phone_number'], $message, $settings[0]['sms_key']);
+
+        }elseif( ( $currentStock[0]['stock'] - $order[$x]['quantity'] ) <= 0 ){
+
+            $settings = get( 'settings', 1);
+
+            $product = get( 'products', $order[$x]['product_id'] )[0]['product_name'];
+
+            $message = "{$product} out of stock";
+
+            itexmo( $settings[0]['phone_number'], $message, $settings[0]['sms_key']);
+
+        }
+
     }
 
-
-    //Check if the stocks are low.
-
+    redirect( route( 'order/pending' ) );
 
 }
 
