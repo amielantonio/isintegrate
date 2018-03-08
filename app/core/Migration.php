@@ -25,11 +25,6 @@ function drop_migrate(){
     drop_tables();
 }
 
-function refresh_migrate(){
-
-    refresh_tables();
-
-}
 
 /**
  * @throws exception
@@ -73,30 +68,30 @@ function process_migration_table( $table, $fields, $prefix ){
     $result = "";
     $result .= "CREATE TABLE IF NOT EXISTS ";
 
-        $result .= $prefix .  $table." " . "(";
-        $delimiter = "";
-        foreach( $fields as $val => $field_name){
-            $result .= $delimiter . $val . " ";
+    $result .= $prefix .  $table." " . "(";
+    $delimiter = "";
+    foreach( $fields as $val => $field_name){
+        $result .= $delimiter . $val . " ";
 
-            if( array_key_exists( 'field_type', $field_name )){
-                $result .= $field_name['field_type']." ";
-            }else{
-                throw new exception('Migration Error: no Field type indicated');
-            }
-
-            if( array_key_exists( 'is_null', $field_name ) && $field_name['is_null']){
-                $result .= "NULL ";
-            }else{
-                $result .= "NOT NULL ";
-            }
-
-            if( array_key_exists( 'key', $field_name ) ){
-                $result .= $field_name['key']. "";
-            }
-
-            $delimiter = ", ";
+        if( array_key_exists( 'field_type', $field_name )){
+            $result .= $field_name['field_type']." ";
+        }else{
+            throw new exception('Migration Error: no Field type indicated');
         }
-        $result .= ')';
+
+        if( array_key_exists( 'is_null', $field_name ) && $field_name['is_null']){
+            $result .= "NULL ";
+        }else{
+            $result .= "NOT NULL ";
+        }
+
+        if( array_key_exists( 'key', $field_name ) ){
+            $result .= $field_name['key']. "";
+        }
+
+        $delimiter = ", ";
+    }
+    $result .= ')';
 
     return $result;
 }
@@ -151,9 +146,29 @@ function drop_tables(){
     }
 }
 
-function refresh_tables(){
+/**
+ * Run Seed migration Function
+ */
+function migrate_seed(){
 
-    drop_tables();
-    create_table();
+    // Pull in Seed Service Provider
+    // Loop in the contents of the file specified in the Service provider
+    // Run Insert query.
+
+    $seedFiles = require BASEPATH."/migration/SeedServiceProvider.php";
+
+    //Loop the files
+    foreach ( $seedFiles as $file ){
+
+        $seeds = require BASEPATH . "/migration/seed/{$file}.php";
+
+        //Loop In table for insertion
+        foreach( $seeds as $table_name => $data ){
+
+            insert( $table_name, $data );
+
+        }
+
+    }
 
 }

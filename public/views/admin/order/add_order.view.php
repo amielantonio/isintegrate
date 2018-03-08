@@ -32,7 +32,7 @@
                         </div>
                         <!-- /.box-header -->
 
-                        <form method="post" action="<?= route( 'orrder/store' )?>">
+                        <form method="post" action="<?= route( 'order/store' )?>">
                             <div class="box-body">
 
 
@@ -92,7 +92,7 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="address">Address</label>
-                                            <input type="text" name="address" id="address" class="form-control readonly">
+                                            <input type="text" name="address" id="address" class="form-control readonly" readonly="readonly">
                                         </div>
                                     </div>
 
@@ -185,7 +185,7 @@
     <script>
         $ = jQuery;
         $(function () {
-            $('#date_received').datepicker({
+            $('#date_ordered').datepicker({
                 autoclose: true,
                 todayBtn: true,
                 startDate: '<?= date('m-d-Y')?>',
@@ -313,7 +313,7 @@
 
                 $.ajax({
                     url: "<?= route( 'customers/' ) ?>" + value + "/get",
-                    method: 'GET,
+                    method: 'GET',
                     success: function( data ){
 
                         customerInfo = JSON.parse( data );
