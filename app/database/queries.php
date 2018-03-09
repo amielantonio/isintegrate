@@ -176,7 +176,7 @@ function atleast( $table, $limit){
     //Create SQL statement
     $sql = sprintf(
 
-        'SELECT * FROM %s LIMIT $s',
+        'SELECT * FROM %s LIMIT %s',
         $table, $limit
 
     );

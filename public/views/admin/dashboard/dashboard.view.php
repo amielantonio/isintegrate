@@ -31,50 +31,28 @@
                     <div class="box-body">
                         <ul class="products-list product-list-in-box">
 
-                            <!-- /.item -->
+                            <?php foreach( $products as $key => $product ) :?>
                             <li class="item">
                                 <div class="product-img">
-                                    <img src="<?php echo asset( '/img/products/videocard_50x50.png' )?>" alt="Product Image">
+                                    <img src="<?php echo asset( $product['product_image'] )?>" alt="Product Image">
                                 </div>
                                 <div class="product-info">
-                                    <a href="javascript:void(0)" class="product-title">Regular Video Card
-                                        <span class="label label-info pull-right">Php 6,150.00</span></a>
+                                    <a href="<?= route( "product/{$product['id']}/edit" );?>" class="product-title"><?= $product['product_name']?>
+                                        <span class="label label-info pull-right">Php <?= $product['unit_price']?></span></a>
                                     <span class="product-description">
-                                      Some information about this product
+                                      <?= $product['product_description']?>
                                     </span>
                                 </div>
                             </li>
                             <!-- /.item -->
-                            <li class="item">
-                                <div class="product-img">
-                                    <img src="<?php echo asset( '/img/products/cpu_50x50.png' )?>" alt="Product Image">
-                                </div>
-                                <div class="product-info">
-                                    <a href="javascript:void(0)" class="product-title">Intel i5 7300 <span class="label label-info pull-right">Php 15,000.00</span></a>
-                                    <span class="product-description">
-                                      Intel i5 intel series with free wifi
-                                    </span>
-                                </div>
-                            </li>
-                            <!-- /.item -->
-                            <li class="item">
-                                <div class="product-img">
-                                    <img src="<?php echo asset( '/img/products/case_fan_50x50.png' )?>" alt="Case Fan">
-                                </div>
-                                <div class="product-info">
-                                    <a href="javascript:void(0)" class="product-title">Regular Case Fan
-                                        <span class="label label-info pull-right">Php 250.00</span></a>
-                                    <span class="product-description">
-                                        Regular Case fan with free magic sing
-                                    </span>
-                                </div>
-                            </li>
-                            <!-- /.item -->
+                            <?php endforeach; ?>
+
+
                         </ul>
                     </div>
                     <!-- /.box-body -->
                     <div class="box-footer text-center">
-                        <a href="javascript:void(0)" class="uppercase">View All Products</a>
+                        <a href="<?= route( 'product' );  ?>" class="uppercase">View All Products</a>
                     </div>
                     <!-- /.box-footer -->
                 </div>
@@ -100,8 +78,10 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+
+                                <?php foreach( $orders as $key => $order) : ?>
                                 <tr>
-                                    <td><a href="pages/examples/invoice.html">OR9842</a></td>
+                                    <td><a href="<?= route( "order/{$order['order_id']}" )?>"><?= $order['order_id']?></a></td>
                                     <td>John doe</td>
                                     <td>
                                         <a href="#">
@@ -109,15 +89,8 @@
                                         </a>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                                    <td>Johnny Depp</td>
-                                    <td>
-                                        <a href="#">
-                                            <button type="button" class="btn btn-primary">View Transaction</button>
-                                        </a>
-                                    </td>
-                                </tr>
+                                <?php endforeach; ?>
+
                                 </tbody>
                             </table>
                         </div>
@@ -125,7 +98,7 @@
                     </div>
                     <!-- /.box-body -->
                     <div class="box-footer text-center">
-                        <a href="javascript:void(0)" class="uppercase">View All Transactions</a>
+                        <a href="<?= route( 'order' ); ?>" class="uppercase">View All Transactions</a>
                     </div>
                     <!-- /.box-footer -->
                 </div>

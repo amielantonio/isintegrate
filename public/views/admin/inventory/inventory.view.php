@@ -74,7 +74,7 @@
                                     <td><?= $product[ 'sku' ] <> "" ? $product[ 'sku' ] : "-"?></td>
                                     <td>
 
-                                        <?php if( $product['stock'] > 1) : ?>
+                                        <?php if( $product['stock'] >= 1) : ?>
                                         <span class="text-green">In Stock(</span>
                                         <?= $product[ 'stock' ]?>
                                         <span class="text-green">)</span>
@@ -88,9 +88,9 @@
                                         <!--BADGE-->
                                         <?php if($product['stock'] == 0 ) : ?>
                                             <span></span>
-                                        <?php elseif( $product['stock']<= $product['stock_limit'] + 5 and $product['stock'] > $product['stock_limit']) : ?>
+                                        <?php elseif( $product['stock']<= $product['stock_limit'] + 5 && $product['stock'] > $product['stock_limit'] && $product['stock'] > 0 ) : ?>
                                             <span class="label label-warning">low stock</span>
-                                        <?php elseif( $product['stock'] <= $product['stock_limit'] ) : ?>
+                                        <?php elseif( $product['stock'] <= $product['stock_limit'] && $product['stock'] >0 ) : ?>
                                             <span class="label label-danger">critical stock</span>
                                         <?php endif;?>
                                     </td>
