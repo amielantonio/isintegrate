@@ -1,3 +1,12 @@
+<?php session_start();
+
+if( !authenticate() ){
+    redirect( route( 'login' ) );
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>

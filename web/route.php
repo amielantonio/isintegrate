@@ -25,7 +25,8 @@ $Route['run_migrate'] = [
 
 
 $Route['/'] = [
-    'request' => 'admin/dashboard'
+    'request' => 'admin/dashboard',
+    'middleware' => 'auth'
 ];
 
 $Route['inventory'] = [
@@ -43,6 +44,7 @@ $Route['product'] = [
     'request' => 'admin/product',
     'action' => 'resource'
 ];
+
 $Route['product/trash'] = [
     'request' => 'admin/product',
     'action' => 'deleted'
@@ -150,6 +152,17 @@ $Route['user'] = [
 ];
 
 
+$Route['login'] = [
+    'request' => 'login',
+];
+$Route['login/auth'] = [
+    'request' => 'login',
+    'action' => 'auth'
+];
+$Route['logout'] = [
+    'request'=>'login',
+    'action'=> 'logout'
+];
 
 
 

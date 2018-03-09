@@ -16,24 +16,22 @@
  */
 function auth_login( $username, $password ){
 
-    $salt = auth_get_salt( $username );
+    $password = md5( $password );
 
-    if( empty($salt) ){
+    $user = rawQuerySelect( 'SELECT * FROM tbl_accounts INNER JOIN tbl_users ON tbl_accounts.username = tbl_users.username WHERE tbl_accounts.username="'.$username.'" AND password = "'.$password.'"' );
 
-        return "No User";
+
+    // Return if user is logged in
+
+    if( empty($user)){
+        return false;
     }
-
-    $password = !empty($salt)? md5( $password.$salt[0]['salt'] ) : "";
-
-    $where = "tbl_accounts.username = '{$username}' AND password = '{$password}'";
-
-    $user = innerJoin(['users', 'accounts'], '', ['username', 'username'], $where);
 
     //Add Session to user
     auth_addUserSession( $user );
 
-    // Return if user is logged in
-    return empty($user) ? false : true;
+    return true;
+
 
 }
 
@@ -74,11 +72,22 @@ function auth_logout(){
  * @return bool
  */
 function authenticate(){
-//    $user = auth_user();
-//
-//    return !empty( $user ) ? true : false ;
+
+    $user = auth_user();
+
+    if( !isset( $user ) || empty($user) ){
+
+
+        return false;
+
+    }
+
 
     return true;
+
+
+
+
 
 }
 
@@ -89,6 +98,8 @@ function authenticate(){
  */
 function auth_user()
 {
+
+
 
     if( !isset($_SESSION['calvary_sessioned_user']) ){
         return false;
@@ -187,13 +198,9 @@ function auth_getUserId(){
  */
 function auth_addUserSession( $user = [] ){
 
-    if( empty( $user ) ){
-        return false;
-    }
-
     session_start();
 
-    $_SESSION['calvary_sessioned_user'] = $user['0'];
+    $_SESSION['calvary_sessioned_user'] = $user[0];
 
     return true;
 

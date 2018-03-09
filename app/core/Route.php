@@ -44,11 +44,11 @@ function direct_route( $uri ){
 
         //Parse Route actions
         request_runAction( $valid_route['request'], $action, $params );
-
         //Authenticate route to controller using middleware
 //        if(route_hasMiddleware( $valid_route)){
 //            include APPPATH . "/middleware/{$valid_route['middleware']}.php";
 //        }
+
 
         return true;
     }
@@ -57,7 +57,6 @@ function direct_route( $uri ){
         return view_error( '501' );
     }
 
-    echo $valid_route['echo'];
     return true;
 }
 

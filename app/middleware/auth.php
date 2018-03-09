@@ -1,5 +1,10 @@
 <?php
 
-authenticate();
+if( !authenticate() ){
+    redirect( route( 'login' ) );
+}
+
+
+
 
 ?>
