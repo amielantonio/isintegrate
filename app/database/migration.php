@@ -99,7 +99,7 @@ $Migration['suppliers'] = [
     'contact_position'      => [ 'field_type' => 'VARCHAR(50)' ],
     'supplier_address'      => [ 'field_type' => 'VARCHAR(100)' ],
     'contact_info'          => [ 'field_type' => 'VARCHAR(15)' ],
-    'email'                 => [ 'field_type' => 'VARCHAR(50)' ],
+    'email'                 => [ 'field_type' => 'VARCHAR(50)', 'key' => 'UNIQUE' ],
     'is_delete'             => [ 'field_type' => 'INT(1)' ],
     'created_at'            => [ 'field_type' => 'DATETIME' ],
     'updated_at'            => [ 'field_type' => 'DATETIME' ]
@@ -110,7 +110,7 @@ $Migration['customers'] = [
     'customer_name'         => [ 'field_type' => 'VARCHAR(50)' ],
     'contact_number'        => [ 'field_type' => 'VARCHAR(50)' ],
     'address'               => [ 'field_type' => 'TEXT' ],
-    'email'                 => [ 'field_type' => 'VARCHAR(50)' ],
+    'email'                 => [ 'field_type' => 'VARCHAR(50)', 'key' => 'UNIQUE' ],
     'is_delete'             => [ 'field_type' => 'INT(1)' ],
     'created_at'            => [ 'field_type' => 'DATETIME' ],
     'updated_at'            => [ 'field_type' => 'DATETIME' ]
@@ -118,11 +118,11 @@ $Migration['customers'] = [
 
 $Migration['users'] = [
     'id'                    => [ 'field_type'  => 'INT', 'key' => 'PRIMARY KEY AUTO_INCREMENT' ],
-    'username'              => [ 'field_type' => 'VARCHAR(50)' ],
+    'username'              => [ 'field_type' => 'VARCHAR(50)', 'key' => 'UNIQUE' ],
     'firstname'             => [ 'field_type' => 'VARCHAR(50)' ],
     'middlename'            => [ 'field_type' => 'VARCHAR(50)' ],
     'lastname'              => [ 'field_type' => 'VARCHAR(50)' ],
-    'email'                 => [ 'field_type' => 'VARCHAR(50)' ],
+    'email'                 => [ 'field_type' => 'VARCHAR(50)', 'key' => 'UNIQUE' ],
     'date_of_birth'         => [ 'field_type' => 'DATE' ],
     'contact_number'        => [ 'field_type' => 'VARCHAR(50)' ],
     'created_at'            => [ 'field_type' => 'DATETIME' ],
@@ -131,7 +131,7 @@ $Migration['users'] = [
 
 $Migration['accounts'] = [
     'id'                    => [ 'field_type'  => 'INT', 'key' => 'PRIMARY KEY AUTO_INCREMENT' ],
-    'username'              => [ 'field_type' => 'VARCHAR(50)' ],
+    'username'              => [ 'field_type' => 'VARCHAR(50)', 'key' => 'UNIQUE' ],
     'password'              => [ 'field_type' => 'VARCHAR(50)' ],
     'access_level'          => [ 'field_type' => 'VARCHAR(50)' ],
     'created_at'            => [ 'field_type' => 'DATETIME' ],
