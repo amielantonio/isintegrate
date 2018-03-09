@@ -81,6 +81,11 @@ $Route['order/pending'] = [
     'action' => 'resource'
 ];
 
+$Route['order/trash'] = [
+    'request' => 'admin/order',
+    'action' => 'view_trash'
+];
+
 $Route['order/pending/{resource}/shipped'] = [
     'request' => 'admin/pending_order',
     'action' => 'shipped'

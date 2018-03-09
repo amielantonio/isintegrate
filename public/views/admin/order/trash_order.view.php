@@ -11,7 +11,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                <i class="fa fa-users"></i> Customers
+                <i class="fa fa-shopping-cart"></i> Orders
             </h1>
 
         </section>
@@ -24,7 +24,7 @@
                 <div class="col-sm-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Customer List</h3>
+                            <h3 class="box-title">Product List</h3>
 
                             <div class="box-tools" style="display: flex">
                                 <div class="input-group input-group-sm" style="width: 200px;">
@@ -43,27 +43,27 @@
                             <table class="table table-hover">
                                 <tbody><tr>
                                     <th>#</th>
-                                    <th>Customer Name</th>
-                                    <th>Contact Number</th>
-                                    <th>Address</th>
-                                    <th>Email</th>
+                                    <th>Order ID</th>
+                                    <th>Date Ordered</th>
                                 </tr>
 
 
-                                <?php $x = 1; foreach( $customers as $key=>$customer) : ?>
+                                <?php $x = 1; foreach( $orders as $key=>$order) : ?>
                                     <tr>
                                         <td><?= $x ?></td>
-                                        <td></td>
+                                        <td>
+                                            <a href="#">
+                                                <?= $order['order_id'] ?>
+                                            </a>
+                                        </td>
                                         <td><?= date( 'F d, Y - h:i a', strtotime( $order['date_ordered'] )) ?></td>
                                     </tr>
                                     <?php $x++; endforeach; ?>
 
                                 <tr>
                                     <th>#</th>
-                                    <th>Customer Name</th>
-                                    <th>Contact Number</th>
-                                    <th>Address</th>
-                                    <th>Email</th>
+                                    <th>Order ID</th>
+                                    <th>Date Ordered</th>
                                 </tr>
                                 </tbody></table>
                         </div>

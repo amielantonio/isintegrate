@@ -124,7 +124,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="<?= route('customer') ?>">
+                        <a href="<?= route('order/trash') ?>">
                             <i class="fa fa-circle-o"></i> <span class="text-danger">Trash</span>
                         </a>
                     </li>

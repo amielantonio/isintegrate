@@ -20,6 +20,15 @@ function index(){
     return view( 'admin/order/order', compact( 'orders' ));
 }
 
+function view_trash(){
+
+    $orders = trashed( 'orders' );
+
+    return view( 'admin/order/trash_order', compact( 'orders' ) );
+
+}
+
+
 /**
  * @param $resource
  * @return mixed
