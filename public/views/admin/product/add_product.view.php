@@ -159,37 +159,37 @@
                     </div>
                 </div>
 
-                <?php if( !isset( $product ) ) : ?>
-                    <div class="col-sm-12">
-                        <div class="box">
-                            <div class="box-header">
-                                <h3 class="box-title">Import Products</h3>
-                            </div>
-
-                            <form action="" method="post">
-                                <div class="box-body">
-
-
-                                    <div class="form-group">
-
-                                        <label for="import">
-                                            File Import
-                                        </label>
-
-                                        <input type="file" name="import" class="form-control">
-
-                                    </div>
-
-                                </div>
-                                <!--END BOX BODY-->
-
-                                <div class="box-footer">
-                                    <button type="button" class="btn btn-primary">Import</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                <?php endif; ?>
+<!--                --><?php //if( !isset( $product ) ) : ?>
+<!--                    <div class="col-sm-12">-->
+<!--                        <div class="box">-->
+<!--                            <div class="box-header">-->
+<!--                                <h3 class="box-title">Import Products</h3>-->
+<!--                            </div>-->
+<!---->
+<!--                            <form action="" method="post">-->
+<!--                                <div class="box-body">-->
+<!---->
+<!---->
+<!--                                    <div class="form-group">-->
+<!---->
+<!--                                        <label for="import">-->
+<!--                                            File Import-->
+<!--                                        </label>-->
+<!---->
+<!--                                        <input type="file" name="import" class="form-control">-->
+<!---->
+<!--                                    </div>-->
+<!---->
+<!--                                </div>-->
+<!--                                <!--END BOX BODY-->-->
+<!---->
+<!--                                <div class="box-footer">-->
+<!--                                    <button type="button" class="btn btn-primary">Import</button>-->
+<!--                                </div>-->
+<!--                            </form>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                --><?php //endif; ?>
 
             </div>
             <!--END ROW-->

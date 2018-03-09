@@ -26,7 +26,7 @@
                         <div class="box-header">
                             <h3 class="box-title">View Supplier</h3>
 
-                            <div class="box-tools" style="display: flex">
+                            <div class="box-tools" style="display: none">
 
                                 <div class="input-group input-group-sm" style="width: 200px;">
                                     <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">

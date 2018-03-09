@@ -26,7 +26,7 @@
                         <div class="box-header">
                             <h3 class="box-title">Product Inventory</h3>
 
-                            <div class="box-tools" style="display: flex">
+                            <div class="box-tools" style="display: none">
                                 <div class="input group input-group-sm mr-10">
                                     <select name="filter-type" id="" class="form-control pull-right">
                                         <option>Select Product Type</option>
