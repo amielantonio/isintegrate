@@ -7,12 +7,11 @@
         <!-- Sidebar user panel -->
 
         <ul class="sidebar-menu" data-widget="tree">
-            <li class="header">MAIN NAVIGATION</li>
-            <li>
-                <a href="<?= route() ?>">
-                    <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-                </a>
-            </li>
+    <!--            <li>-->
+    <!--                <a href="--><?//= route() ?><!--">-->
+    <!--                    <i class="fa fa-dashboard"></i> <span>Dashboard</span>-->
+    <!--                </a>-->
+    <!--            </li>-->
 
             <!--View for Admin only-->
 
@@ -79,6 +78,11 @@
                     <li>
                         <a href="<?= route('product/brands') ?>">
                             <i class="fa fa-circle-o"></i> Brands
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?= route('product/trash') ?>">
+                            <i class="fa fa-circle-o"></i> <span class="text-danger">Trash</span>
                         </a>
                     </li>
                 </ul>
@@ -203,9 +207,6 @@
             <li class="">
                 <a href="<?= route('settings/sms-settings') ?>">
                     <i class="fa fa-wrench"></i> <span>Settings</span>
-                    <span class="pull-right-container">
-                      <i class="fa fa-angle-left pull-right"></i>
-                    </span>
                 </a>
 
 
