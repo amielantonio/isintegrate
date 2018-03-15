@@ -47,7 +47,9 @@ function create(){
 
     $products = allWithoutTrash( 'products' );
 
-    return view( 'admin/receivables/add_receivables', compact( 'products' )) ;
+    $suppliers = allWithoutTrash( 'suppliers' );
+
+    return view( 'admin/receivables/add_receivables', compact( 'products', 'suppliers' )) ;
 
 }
 

@@ -62,10 +62,10 @@
                                         <div class="form-group">
                                             <label for="supplier_id">Supplier Name</label>
                                             <select id="supplier_id" class="form-control select2" name="supplier_id">
-<!--                                                --><?php //foreach( $suppliers as $key => $supplier) : ?>
-<!--                                                    <option value="--><?//= $supplier['id']?><!--">--><?//= $supplier['supplier_name']?><!--</option>-->
-<!--                                                --><?php //endforeach; ?>
-                                                <option>1</option>
+                                                <?php foreach( $suppliers as $key => $supplier) : ?>
+                                                    <option value="<?= $supplier['id']?>"><?= $supplier['supplier_name']?></option>
+                                                <?php endforeach; ?>
+
                                             </select>
                                         </div>
                                     </div>
@@ -84,7 +84,7 @@
                                         <button id="add_row" class="btn btn-info" type="button">
                                             <i class="fa fa-plus"></i>
                                         </button>
-                                        <button id="add_row" class="btn btn-danger" type="button">
+                                        <button id="subtract_row" class="btn btn-danger" type="button">
                                             <i class="fa fa-minus"></i>
                                         </button>
                                         <table class="table" id="product_table">

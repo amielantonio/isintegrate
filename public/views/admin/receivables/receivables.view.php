@@ -11,7 +11,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                <i class="fa fa-pencil-square-o"></i> Receivables <small>Inventory In</small>
+                <i class="fa fa-pencil-square-o"></i> Inventory In
             </h1>
 
         </section>
@@ -24,7 +24,7 @@
                 <div class="col-sm-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Receivables</h3>
+                            <h3 class="box-title"></h3>
 
                             <div class="box-tools" style="display: none">
                                 <div class="input group input-group-sm mr-10">

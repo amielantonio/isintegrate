@@ -8,13 +8,7 @@
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-            <h1>
-                <i class="fa fa-cube"></i> Products
-            </h1>
 
-        </section>
 
         <!-- Main content -->
         <section class="content">
@@ -24,7 +18,7 @@
                 <div class="col-sm-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title"><?= ( isset( $product ) )? "Edit" : "Add New" ?> Product</h3>
+                            <h1 class="box-title"><i class="fa fa-cube"></i> <?= ( isset( $product ) )? "Edit" : "Add New" ?> Products</h1>
                         </div>
                         <!-- /.box-header -->
 

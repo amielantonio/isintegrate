@@ -9,12 +9,6 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        <section class="content-header">
-            <h1>
-                <i class="fa fa-shopping-cart"></i> Orders
-            </h1>
-
-        </section>
 
         <!-- Main content -->
         <section class="content">
@@ -24,7 +18,9 @@
                 <div class="col-sm-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Product List</h3>
+                            <h1 class="box-title">
+                                <i class="fa fa-shopping-cart"></i> Orders
+                            </h1>
 
                             <div class="box-tools" style="display: none">
                                 <div class="input-group input-group-sm" style="width: 200px;">

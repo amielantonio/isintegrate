@@ -25,7 +25,7 @@
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-pencil-square-o"></i>
-                    <span>Receivables</span>
+                    <span>Inventory IN</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
@@ -34,13 +34,13 @@
                 <ul class="treeview-menu">
                     <li>
                         <a href="<?= route('receivables') ?>">
-                            <i class="fa fa-circle-o"></i> View Receivables
+                            <i class="fa fa-circle-o"></i> View Inventory IN
                         </a>
                     </li>
 
                     <li>
                         <a href="<?= route('receivables/create') ?>">
-                            <i class="fa fa-circle-o"></i> New Receivables
+                            <i class="fa fa-circle-o"></i> New Inventory IN
                         </a>
                     </li>
 
@@ -112,11 +112,11 @@
                             <i class="fa fa-circle-o"></i> View Order Log
                         </a>
                     </li>
-                    <li>
-                        <a href="<?= route('customer') ?>">
-                            <i class="fa fa-circle-o"></i> View Customers
-                        </a>
-                    </li>
+<!--                    <li>-->
+<!--                        <a href="--><?//= route('customer') ?><!--">-->
+<!--                            <i class="fa fa-circle-o"></i> View Customers-->
+<!--                        </a>-->
+<!--                    </li>-->
                     <li>
                         <a href="<?= route('order/create') ?>">
                             <i class="fa fa-circle-o"></i> Add New Order
@@ -135,27 +135,31 @@
 
                 </ul>
             </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-file"></i>
-                    <span>Warranty</span>
-                    <span class="pull-right-container">
-                      <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
+<!--            <li class="treeview">-->
+<!--                <a href="#">-->
+<!--                    <i class="fa fa-file"></i>-->
+<!--                    <span>Warranty</span>-->
+<!--                    <span class="pull-right-container">-->
+<!--                      <i class="fa fa-angle-left pull-right"></i>-->
+<!--                    </span>-->
+<!--                </a>-->
+<!---->
+<!--                <ul class="treeview-menu">-->
+<!--                    <li>-->
+<!--                        <a href="--><?//= route('warranty') ?><!--">-->
+<!--                            <i class="fa fa-circle-o"></i> View Warranties-->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <a href="--><?//= route('warranty/create') ?><!--">-->
+<!--                            <i class="fa fa-circle-o"></i> Add Warranty-->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </li>-->
 
-                <ul class="treeview-menu">
-                    <li>
-                        <a href="<?= route('warranty') ?>">
-                            <i class="fa fa-circle-o"></i> View Warranties
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?= route('warranty/create') ?>">
-                            <i class="fa fa-circle-o"></i> Add Warranty
-                        </a>
-                    </li>
-                </ul>
+            <li style="border-top: 1px solid #ccc">
+
             </li>
 
             <li class="treeview">
