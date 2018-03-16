@@ -8,13 +8,21 @@
  */
 function index(){
 
+//    $orders = rawQuerySelect( '
+//
+//    SELECT order_id, order_status, SUM(quantity) as quantity, SUM(selling_price) as selling_price, (SUM(quantity) * SUM(selling_price)) as amount, date_ordered,
+//    ( SELECT DISTINCT customer_name FROM tbl_orders INNER JOIN tbl_customers WHERE tbl_customers.id = tbl_orders.customer_id LIMIT 1) as customer_name
+//    FROM tbl_orders
+//    GROUP BY order_id
+//
+//    ' );
+
     $orders = rawQuerySelect( '
-    
-    SELECT order_id, order_status, SUM(quantity) as quantity, SUM(selling_price) as selling_price, (SUM(quantity) * SUM(selling_price)) as amount, date_ordered,
-    ( SELECT DISTINCT customer_name FROM tbl_orders INNER JOIN tbl_customers WHERE tbl_customers.id = tbl_orders.customer_id LIMIT 1) as customer_name
-    FROM tbl_orders 
-    GROUP BY order_id 
-    
+
+    SELECT order_id, order_status, SUM(quantity) as quantity, SUM(selling_price) as selling_price, (SUM(quantity) * SUM(selling_price)) as amount, date_ordered
+    FROM tbl_orders
+    GROUP BY order_id
+
     ' );
 
     return view( 'admin/order/order', compact( 'orders' ));

@@ -39,7 +39,6 @@
                                 <tbody><tr>
                                     <th>#</th>
                                     <th>Order ID</th>
-                                    <th>Customer Name</th>
                                     <th>Qty</th>
                                     <th>Amount</th>
                                     <th>Order Status</th>
@@ -54,11 +53,6 @@
                                     <td>
                                         <a href="#">
                                             <?= $order['order_id'] ?>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a href="#">
-                                            <?= $order['customer_name'] ?>
                                         </a>
                                     </td>
                                     <td><?= $order['quantity'] ?></td>
@@ -82,7 +76,6 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Order ID</th>
-                                    <th>Customer Name</th>
                                     <th>Qty</th>
                                     <th>Amount</th>
                                     <th>Order Status</th>

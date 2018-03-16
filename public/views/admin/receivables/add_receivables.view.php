@@ -15,9 +15,7 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <h1>
-                <i class="fa fa-pencil-square-o"></i> Receivables <small>Inventory In</small>
-            </h1>
+
 
         </section>
 
@@ -29,7 +27,9 @@
                 <div class="col-sm-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Receivables</h3>
+                            <h1 class="box-title">
+                                <i class="fa fa-pencil-square-o"></i> Inventory In
+                            </h1>
                         </div>
                         <!-- /.box-header -->
 
@@ -56,28 +56,6 @@
                                 </div>
                                 <!--END ROW-->
 
-                                <div class="row">
-
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="supplier_id">Supplier Name</label>
-                                            <select id="supplier_id" class="form-control select2" name="supplier_id">
-                                                <?php foreach( $suppliers as $key => $supplier) : ?>
-                                                    <option value="<?= $supplier['id']?>"><?= $supplier['supplier_name']?></option>
-                                                <?php endforeach; ?>
-
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="receivable_image">Receipt Image</label>
-                                            <input type="file" class="form-control" name="receivable_image" id="receivable_image">
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <!--END ROW-->
 
                                 <div class="row">
                                     <div class="col-sm-12">
@@ -221,6 +199,20 @@
             amountInput.val( unitprice * quantity );
 
 
+
+        });
+
+        $( document ).on( 'blur', '.quantity-val', function(){
+
+            var sellingInput = $( this ).parent().siblings().find('.unit-price-val');
+            var selling = sellingInput.val();
+
+            var amountInput = $( this ).parent().siblings().find('.amount-val');
+            var quantity = $( this ).val();
+
+            if( selling === "") return;
+
+            amountInput.val( parseFloat(selling) * parseFloat(quantity).toFixed(2) );
 
         });
 

@@ -10,8 +10,7 @@ function index(){
 
     $receivables = rawQuerySelect( '
     
-    SELECT id, receipt_number, SUM(quantity) as quantity, SUM(unit_price) as unit_price, (SUM(quantity) * SUM(unit_price)) as amount, date_received,
-    ( SELECT DISTINCT supplier_name FROM tbl_receivables INNER JOIN tbl_suppliers WHERE tbl_suppliers.id = tbl_receivables.supplier_id) as supplier_name
+    SELECT id, receipt_number, SUM(quantity) as quantity, SUM(unit_price) as unit_price, (SUM(quantity) * SUM(unit_price)) as amount, date_received
     FROM tbl_receivables 
     GROUP BY receipt_number 
     
@@ -126,7 +125,6 @@ function update( $resource ){
     $data = [
 
         'receipt_number'    => $_POST[ 'receipt_number' ],
-        'supplier_id'       => $_POST[ 'supplier_id' ],
         'product_id'        => $_POST[ 'product_id' ],
         'quantity'          => $_POST[ 'quantity' ],
         'unit_price'        => $_POST[ 'unit_price' ],
