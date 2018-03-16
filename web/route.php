@@ -78,6 +78,11 @@ $Route['order'] = [
     'action' => 'resource'
 ];
 
+$Route['sales'] = [
+    'request' => 'admin/order',
+    'action' => 'sales'
+];
+
 $Route['order/pending'] = [
     'request' => 'admin/pending_order',
     'action' => 'resource'
@@ -111,7 +116,7 @@ $Route['customer/{resource}/get'] =[
 
 ];
 
-//END ORDER
+//END CUSTOMER
 
 $Route['report'] = [
     'request' => 'admin/report',

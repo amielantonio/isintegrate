@@ -23,7 +23,7 @@
                     <div class="box">
                         <div class="box-header">
                             <h1 class="box-title">
-                                <i class="fa fa-shopping-cart"></i> Orders
+                                <i class="fa fa-credit-card"></i> Sales
                             </h1>
                         </div>
                         <!-- /.box-header -->
@@ -53,52 +53,7 @@
 
                                 </div>
                                 <!-- END ROW-->
-                                <hr>
-                                <h4>Customer Information</h4>
-                                <hr>
 
-                                <div class="row">
-
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="customer_id">Customer Name</label>
-
-                                            <select class="form-control select2 customer_name" name="customer_name" style="width: 100%;">
-                                                <option></option>
-                                                <?php foreach( $customers as $key => $customer) : ?>
-                                                    <option value="<?= $customer["id"]?>"><?= $customer["customer_name"]?></option>
-                                                <?php endforeach; ?>
-                                                <option value="new">New Customer</option>
-                                            </select>
-
-                                            <input type="text" name="customer_name" id="customer_name" class="form-control toggle-hidden" placeholder="Customer Name">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        <label for="contact_number">Contact Number</label>
-                                        <input type="text" name="contact_number" id="contact_number" class="form-control readonly" readonly="readonly">
-                                    </div>
-
-                                </div>
-                                <!--END ROW-->
-
-                                <div class="row">
-
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="address">Address</label>
-                                            <input type="text" name="address" id="address" class="form-control readonly" readonly="readonly">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        <label for="email">Email</label>
-                                        <input type="text" name="email" id="email" class="form-control readonly" readonly="readonly">
-                                    </div>
-
-                                </div>
-                                <!--END ROW-->
 
                                 <hr>
                                 <h4>Products</h4>

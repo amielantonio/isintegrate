@@ -441,11 +441,11 @@ function where( $table, $where="", $limit = ''){
 
     );
 
+
     //Check if limit is available
     if($limit <> ""){
         $sql .= sprintf( " LIMIT %s", $limit );
     }
-
 
     $statement = $conn->prepare( $sql );
 

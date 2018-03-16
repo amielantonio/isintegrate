@@ -8,15 +8,14 @@ function index(){
 
     $orders = rawQuerySelect( '
     
-    SELECT order_id, order_status, SUM(quantity) as quantity, SUM(selling_price) as selling_price, (SUM(quantity) * SUM(selling_price)) as amount, date_ordered,
-    ( SELECT DISTINCT customer_name FROM tbl_orders INNER JOIN tbl_customers WHERE tbl_customers.id = tbl_orders.customer_id LIMIT 1) as customer_name
+    SELECT order_id, order_status, SUM(quantity) as quantity, SUM(selling_price) as selling_price, (SUM(quantity) * SUM(selling_price)) as amount, date_ordered
     FROM tbl_orders
     WHERE order_status = "Pending" 
     GROUP BY order_id 
     
     ' );
 
-    return view( 'admin/order/pending_order', compact( 'orders' ) );
+    return view( 'admin/order/pending_order',    compact( 'orders' ) );
 }
 
 

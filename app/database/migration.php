@@ -79,7 +79,7 @@ $Migration['orders'] = [
     'order_status'          => [ 'field_type' => 'VARCHAR(50)' ],
     'date_ordered'          => [ 'field_type' => 'DATETIME' ],
     'is_delete'             => [ 'field_type' => 'INT(1)' ],
-    'date_shipped'          => [ 'field_type' => 'DATETIME' ]
+    'date_shipped'          => [ 'field_type' => 'DATE' ]
 ];
 
 $Migration['warranties'] = [

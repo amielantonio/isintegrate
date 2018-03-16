@@ -99,14 +99,19 @@
 
 
                 <a href="#">
-                    <i class="fa fa-shopping-cart"></i>
-                    <span>Orders</span> <span class="badge"><?= $orders > 0 ? $orders : "" ?></span>
+                    <i class="fa fa-credit-card"></i>
+                    <span>Sales</span> <span class="badge"><?= $orders > 0 ? $orders : "" ?></span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
 
                 <ul class="treeview-menu">
+                    <li>
+                        <a href="<?= route('sales') ?>">
+                            <i class="fa fa-circle-o"></i> View Sales
+                        </a>
+                    </li>
                     <li>
                         <a href="<?= route('order') ?>">
                             <i class="fa fa-circle-o"></i> View Order Log
@@ -122,11 +127,7 @@
                             <i class="fa fa-circle-o"></i> Add New Order
                         </a>
                     </li>
-                    <li>
-                        <a href="<?= route('order/pending') ?>">
-                            <i class="fa fa-circle-o"></i> Pending Order <span class="badge"><?= $orders > 0 ? $orders : "" ?></span>
-                        </a>
-                    </li>
+
                     <li>
                         <a href="<?= route('order/trash') ?>">
                             <i class="fa fa-circle-o"></i> <span class="text-danger">Trash</span>
@@ -214,6 +215,10 @@
                 </a>
 
 
+            </li>
+
+            <li class="">
+                <a href="<?= route('logout' ) ?>"><i class="fa fa-sign-out"></i> Sign out</a>
             </li>
 
         </ul>

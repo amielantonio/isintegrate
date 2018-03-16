@@ -18,8 +18,16 @@
                     <div class="box">
                         <div class="box-header">
                             <h1 class="box-title">
-                                <i class="fa fa-credit-card"></i> Sales
+                                <i class="fa fa-shopping-cart"></i> Orders
                             </h1>
+
+                            <div class="pull-right">
+
+                                <span class="mr-20"><b>Total Gross Sales: </b> Php<?= $totalSales[0]['gross'] ?></span>
+
+                                <b>Total Net Income: </b> Php<?= $totalSales[0]['gross'] - $totalSales[0]['total_unit']?>
+
+                            </div>
 
                             <div class="box-tools" style="display: none">
                                 <div class="input-group input-group-sm" style="width: 200px;">
@@ -38,59 +46,60 @@
                             <table class="table table-hover">
                                 <tbody><tr>
                                     <th>#</th>
-                                    <th>OR ID</th>
+                                    <th>Product Name</th>
+                                    <th>Product Brand</th>
+                                    <th>Unit Price</th>
+                                    <th>Selling Price</th>
                                     <th>Qty</th>
                                     <th>Amount</th>
-                                    <th>Order Status</th>
-                                    <th>Date Ordered</th>
-                                    <th>Actions</th>
                                 </tr>
 
 
-                                <?php $x = 1; foreach( $orders as $key=>$order) : ?>
-                                <tr>
-                                    <td><?= $x ?></td>
-                                    <td>
-                                        <a href="#">
-                                            <?= $order['order_id'] ?>
-                                        </a>
-                                    </td>
-                                    <td><?= $order['quantity'] ?></td>
-                                    <td><?= $order['amount'] ?></td>
-                                    <td>
-                                        <span class="label label-<?php if($order['order_status'] == 'Shipped'){ echo "info"; }elseif($order['order_status'] == 'Pending'){ echo "warning"; }else{ echo 'danger'; }  ?>">
-                                            <?= $order['order_status'] ?>
-                                        </span>
-                                    </td>
-                                    <td><?= date( 'F d, Y - h:i a', strtotime( $order['date_shipped'] )) ?></td>
-                                    <td>
-                                        <a href="<?= route( '' ) ?>">
-                                            <button type="button" class="btn btn-primary">
-                                                View
-                                            </button>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <?php $x++; endforeach; ?>
+                                <?php $x = 1; foreach( $sales as $key=>$sale) : ?>
+                                    <tr>
+                                        <td><?= $x ?></td>
+                                        <td>
+                                            <a href="#">
+                                                <?= $sale['product_name'] ?>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="#">
+                                                <?= $sale['product_brand'] ?>
+                                            </a>
+                                        </td>
+                                        <td><?= $sale['unit_price'] ?></td>
+                                        <td><?= $sale['selling_price'] ?></td>
+                                        <td><?= $sale['quantity'] ?></td>
+                                        <td><?= $sale['amount'] ?></td>
+                                    </tr>
+                                    <?php $x++; endforeach; ?>
 
                                 <tr>
                                     <th>#</th>
-                                    <th>OR ID</th>
+                                    <th>Product Name</th>
+                                    <th>Product Brand</th>
+                                    <th>Unit Price</th>
+                                    <th>Selling Price</th>
                                     <th>Qty</th>
                                     <th>Amount</th>
-                                    <th>Order Status</th>
-                                    <th>Date Shipped</th>
-                                    <th>Actions</th>
                                 </tr>
                                 </tbody></table>
                         </div>
 
-                        <div class="box-footer clearfix">
-                            <ul class="pagination pagination-sm no-margin pull-right">
-                                <li><a href="#">«</a></li>
-                                <li><a href="#">1</a></li>
-                                <li><a href="#">»</a></li>
-                            </ul>
+
+
+                        <div class="box-footer">
+
+                            <div class="pull-right">
+
+                                <span class="mr-20"><b>Total Gross Sales: </b> Php<?= $totalSales[0]['gross'] ?></span>
+
+                                <b>Total Net Income: </b> Php<?= $totalSales[0]['gross'] - $totalSales[0]['total_unit']?>
+
+                            </div>
+
+
                         </div>
                         <!-- /.box-body -->
                     </div>
